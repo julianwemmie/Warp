@@ -4,8 +4,8 @@ package edu.uiowa.cs.warp;
  * ReliabilityVisualization creates the visualizations for
  * the reliability analysis of the WARP program. <p>
  * 
- * CS2820 Fall 2021 Project: Implement this class to create
- * the file visualization that is requested in WarpTester.
+ * CS2820 Spring 2023 Project: Implement this class to create
+ * the file visualization that is requested in Warp.
  * 
  * @author sgoddard
  *

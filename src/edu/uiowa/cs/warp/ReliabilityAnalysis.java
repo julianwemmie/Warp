@@ -22,8 +22,8 @@ package edu.uiowa.cs.warp;
  * probability.
  * <p>
  * 
- * CS2820 Fall 2021 Project: Implement this class to compute the probabilities the comprise the
- * ReliablityMatrix, which is the core of the file visualization that is requested in WarpTester.
+ * CS2820 Spring 2023 Project: Implement this class to compute the probabilities the comprise the
+ * ReliablityMatrix, which is the core of the file visualization that is requested in Warp.
  * <p>
  * 
  * To do this, you will need to retrieve the program source, parse the instructions for each node,
