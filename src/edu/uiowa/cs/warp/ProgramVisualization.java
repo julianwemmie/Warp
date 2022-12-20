@@ -14,14 +14,12 @@ public class ProgramVisualization extends VisualizationObject {
   private ProgramSchedule sourceCode;
   private Program program;
   private Boolean deadlinesMet;
-  // private GuiVisualization gui;
 
   ProgramVisualization(WarpInterface warp) {
     super(new FileManager(), warp, SOURCE_SUFFIX);
     this.program = warp.toProgram();
     this.sourceCode = program.getSchedule();
     this.deadlinesMet = warp.deadlinesMet();
-    // this.gui = null;
   }
 
   @Override
