@@ -42,14 +42,14 @@ public class Warp {
 
   private static final Integer NUM_CHANNELS = 16; // default number of wireless channels available
                                                   // for scheduling (command line option)
-  private static final Double MIN_LQ = 1.0; // default minimum Link Quality in system (command line
+  private static final Double MIN_LQ = 0.9; // default minimum Link Quality in system (command line
                                             // option)
   private static final Double E2E = 0.99; // default end-to-end reliability for all flows (command
                                           // line option)
   private static final String DEFAULT_OUTPUT_SUB_DIRECTORY = "OutputFiles/";
   private static final ScheduleChoices DEFAULT_SCHEDULER = ScheduleChoices.PRIORITY;
   /* default number of faults to be tolerated per transmission (command-line option */
-  private static final Integer DEFAULT_FAULTS_TOLERATED = 1;
+  private static final Integer DEFAULT_FAULTS_TOLERATED = 0;
 
   private static Integer nChannels; // number of wireless channels available for scheduling
   private static Integer numFaults; // number of faults tolerated per edge
@@ -152,7 +152,8 @@ public class Warp {
     var viz = VisualizationFactory.createProgramVisualization(warp, outputSubDirectory, choice);
     if (viz != null) {
       viz.toFile();
-      if (guiRequested) {
+      if (guiRequested && schedulerRequested) {
+        /* Only display window when a specific scheduler has been requested */
         viz.toDisplay();
       }
     }

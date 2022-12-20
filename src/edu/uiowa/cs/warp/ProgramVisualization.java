@@ -37,13 +37,12 @@ public class ProgramVisualization extends VisualizationObject {
     header.add(String.format("Scheduler Name: %s\n", program.getSchedulerName()));
 
     /* The following parameters are output based on a special schedule or the fault model */
-    if (program.getNumTransmissions() > 0) { // only specify when NumTransmissions is fixed
-      header.add(String.format("nTransmissions: %d\n", program.getNumTransmissions()));
-    } else {
-      header.add(String.format("M: %s\n", String.valueOf(program.getMinPacketReceptionRate())));
-      header.add(String.format("E2E: %s\n", String.valueOf(program.getE2e())));
-      header.add(String.format("nChannels: %d\n", program.getNumChannels()));
+    if (program.getNumFaults() > 0) { // only specify when deterministic fault model is assumed
+      header.add(String.format("numFaults: %d\n", program.getNumFaults()));
     }
+    header.add(String.format("M: %s\n", String.valueOf(program.getMinPacketReceptionRate())));
+    header.add(String.format("E2E: %s\n", String.valueOf(program.getE2e())));
+    header.add(String.format("nChannels: %d\n", program.getNumChannels()));
     return header;
   }
 
