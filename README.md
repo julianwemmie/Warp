@@ -1,4 +1,4 @@
-# CS2820 Fall 2023 WARP Project Code
+# CS2820 Spring 2023 WARP Project Code
 This code base will be used for the University of Iowa CS 2820 Introduction to Software
 Development course. The code was developed by Steve Goddard for the WARP sensor network 
 research project. It was first written in Swift and rewritten in Java. It was then 
