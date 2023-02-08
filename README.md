@@ -7,4 +7,9 @@ hack, and it needs a lot of cleanup and refactoring. A perfect code base to teac
 the value of software developement fundamentals!
 
 Edited by Ethan Boileau on 1/22/2023
+
+2/7/2023: <br>
+Implemented a main() function to <b> WorkLoadDescription.java </b>. The user inputs a graph text file,
+and the function outputs the file with the flows alphabetically ordered and numbered in ascending order. 
+
 <br>

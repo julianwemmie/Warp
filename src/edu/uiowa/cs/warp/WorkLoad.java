@@ -796,4 +796,4 @@ public class WorkLoad extends WorkLoadDescription implements ReliabilityParamete
     }
     return maxLength;
   }
-}
+} 
