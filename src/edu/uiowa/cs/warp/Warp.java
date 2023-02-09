@@ -2,15 +2,18 @@
  * WARP: On-the-fly Program Synthesis for Agile, Real-time, and Reliable Wireless Networks. This
  * system generates node communication programs WARP uses programs to specify a network’s behavior
  * and includes a synthesis procedure to automatically generate such programs from a high-level
- * specification of the system’s workload and topology. WARP has three unique features: <br>
+ * specification of the system’s workload and topology. WARP has three unique features: 
+ * <br>
  * (1) WARP uses a domain-specific language to specify stateful programs that include conditional
  * statements to control when a flow’s packets are transmitted. The execution paths of programs
  * depend on the pattern of packet losses observed at run-time, thereby enabling WARP to readily
- * adapt to packet losses due to short-term variations in link quality. <br>
+ * adapt to packet losses due to short-term variations in link quality. 
+ * <br>
  * (2) Our synthesis technique uses heuristics to improve network performance by considering
  * multiple packet loss patterns and associated execution paths when determining the transmissions
  * performed by nodes. Furthermore, the generated programs ensure that the likelihood of a flow
- * delivering its packets by its deadline exceeds a user-specified threshold. <br>
+ * delivering its packets by its deadline exceeds a user-specified threshold. 
+ * <br>
  * (3) WARP can adapt to workload and topology changes without explicitly reconstructing a network’s
  * program based on the observation that nodes can independently synthesize the same program when
  * they share the same workload and topology information. Simulations show that WARP improves
@@ -40,40 +43,137 @@ import edu.uiowa.cs.warp.Visualization.WorkLoadChoices;
  */
 public class Warp {
 
-  private static final Integer NUM_CHANNELS = 16; // default number of wireless channels available
-                                                  // for scheduling (command line option)
-  private static final Double MIN_LQ = 0.9; // default minimum Link Quality in system (command line
-                                            // option)
-  private static final Double E2E = 0.99; // default end-to-end reliability for all flows (command
-                                          // line option)
+  /**
+   * Default number of wireless channels available for scheduling (command line option).
+   */
+  private static final Integer NUM_CHANNELS = 16;
+  
+  /**
+   * Default minimum Link Quality in system (command line option).
+   */
+  private static final Double MIN_LQ = 0.9;
+  
+  /**
+   * Default end-to-end reliability for all flows (command line option).
+   */
+  private static final Double E2E = 0.99;
+
+  /**
+   * Default output sub directory.
+   */
   private static final String DEFAULT_OUTPUT_SUB_DIRECTORY = "OutputFiles/";
+  
+  /**
+   * Default scheduling method for setting flows.
+   */
   private static final ScheduleChoices DEFAULT_SCHEDULER = ScheduleChoices.PRIORITY;
-  /* default number of faults to be tolerated per transmission (command-line option */
+  
+  /**
+   * Default number of faults to be tolerated per transmission (command-line option).
+   */
   private static final Integer DEFAULT_FAULTS_TOLERATED = 0;
 
-  private static Integer nChannels; // number of wireless channels available for scheduling
-  private static Integer numFaults; // number of faults tolerated per edge
-  private static Double minLQ; // global variable for minimum Link Quality in system, later we can
-                               // add local minLQ for each link
-  private static Double e2e; // global variable for minimum Link Quality in system, later we can add
-                             // local minLQ for each link
-  private static String outputSubDirectory; // default output subdirectory (from working directory)
-                                            // where output files will be placed (e.g., gv, wf, ra)
-  private static Boolean guiRequested; // Gui Visualization selected
-  private static Boolean gvRequested; // GraphVis file requested flag
-  private static Boolean wfRequested; // WARP file requested flag
-  private static Boolean raRequested; // Reliability Analysis file requested flag
-  private static Boolean laRequested; // Latency Analysis file requested flag
-  private static Boolean caRequested; // Channel Analysis file requested flag
-  private static Boolean simRequested; // Simulation file requested flag
-  private static Boolean allRequested; // all out files requested flag
-  private static Boolean latencyRequested; // latency report requested flag
+  /**
+   * Number of wireless channels available for scheduling.
+   */
+  private static Integer nChannels;
+  
+  /**
+   * Number of faults tolerated per edge.
+   */
+  
+  /**
+   * Number of faults tolerated per edge.
+   */
+  private static Integer numFaults;
+  
+  /**
+   * Global variable for minimum Link Quality in system.
+   */
+  private static Double minLQ; // later we can add local minLQ for each link
+  
+  /**
+   * Global variable for minimum Link Quality in system.
+   */
+  private static Double e2e; // later we can add local minLQ for each link
+  
+  /**
+   * Default output sub-directory (from working directory) 
+   * where output files will be placed (e.g., gv, wf, ra).
+   */
+  private static String outputSubDirectory;
+  
+  /**
+   * GUI visualization selected.
+   */
+  private static Boolean guiRequested;
+  
+  /**
+   * GraphVis file requested flag.
+   */
+  private static Boolean gvRequested;
+  
+  /**
+   * WARP file requested flag.
+   */
+  private static Boolean wfRequested;
+  
+  /**
+   * Reliability Analysis file requested flag.
+   */
+  private static Boolean raRequested; 
+  
+  /**
+   * Latency Analysis file requested flag.
+   */
+  private static Boolean laRequested;
+  
+  /**
+   * Channel Analysis file requested flag.
+   */
+  private static Boolean caRequested;
+  
+  /**
+   * Simulation file requested flag.
+   */
+  private static Boolean simRequested;
+  
+  /**
+   * All out files requested flag.
+   */
+  private static Boolean allRequested;
+  
+  /**
+   * Latency report requested flag.
+   */
+  private static Boolean latencyRequested;
+  
+  /**
+   * Whether or not a scheduler should be built.
+   */
   private static Boolean schedulerRequested = false;
-  private static Boolean verboseMode; // verbose mode flag (mainly for running in IDE)
-  private static String inputFile; // inputFile from which the graph workload is read
-  private static ScheduleChoices schedulerSelected; // Scheduler requested
+  
+  /**
+   * Verbose mode flag (mainly for running in IDE).
+   */
+  private static Boolean verboseMode;
+  
+  /**
+   * Input file from which the graph workload is read.
+   */
+  private static String inputFile;
+  
+  /**
+   * Scheduler requested.
+   */
+  private static ScheduleChoices schedulerSelected;
 
 
+  /**
+   * The main entry point for the application.
+   * Run with -help argument for more information about commands.
+   * @param args
+   */
   public static void main(String[] args) {
     // parse command-line options and set WARP system parameters
     setWarpParameters(args);

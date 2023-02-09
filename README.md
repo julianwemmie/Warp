@@ -13,3 +13,5 @@ Implemented a main() function to <b> WorkLoadDescription.java </b>. The user inp
 and the function outputs the file with the flows alphabetically ordered and numbered in ascending order. 
 
 <br>
+2/9/2023: <br>
+Julian Wemmie: Added javadocs to all attributes of Warp.java
