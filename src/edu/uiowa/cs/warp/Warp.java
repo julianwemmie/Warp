@@ -81,10 +81,6 @@ public class Warp {
   /**
    * Number of faults tolerated per edge.
    */
-  
-  /**
-   * Number of faults tolerated per edge.
-   */
   private static Integer numFaults;
   
   /**
