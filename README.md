@@ -26,8 +26,7 @@ Julian Wemmie: Added Javadocs to VisualizationImplementation.java and to the fol
 	<li>getNodeMapIndex()</li>
 	<li>toWorkLoad()</li>
 </ul>
-<<<<<<< HEAD
-=======
+
 2/14/2023: <br>
 Ethan Boileau: Added Javadocs to ProgramVisualization.java, added touch-ups to previous Javadocs.
->>>>>>> 1adccb28645d90c7d27ee485eafcc9382dc950a8
+

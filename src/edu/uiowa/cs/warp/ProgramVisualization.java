@@ -3,7 +3,7 @@ package edu.uiowa.cs.warp;
 
 /**
  * Allows the user to generate a GUI to visualize WARP data given by .dsl files.
- * If applicable, the GUI will contain minimum packet reception rate, End-to-End transmissions, 
+ * If applicable, the GUI will contain minimum packet reception rate, End-to-End transmission reliability, 
  * and number of channels.
  *
  * @author sgoddard
