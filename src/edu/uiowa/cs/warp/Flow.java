@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * Flow is a java class in which the user defines flows based on the graph file provided.
  * The flows, edges, and linkTxAndTotalCost are all added to separate ArrayList which are stored and can
  * be accessed if needed. It is able to sort the flows based on the 
+ * 
+ * 
  * @author sgoddard
  *
  *
@@ -36,7 +38,7 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
     Edge edgePredecessor;
     
     /*
-     * Constructor that sets name, priority, and index
+     * Constructor that sets name, priority, and index of the flow
      */
     Flow (String name, Integer priority, Integer index){
     	super(name, priority, DEFAULT_PERIOD, DEFAULT_DEADLINE, DEFAULT_PHASE);
@@ -73,6 +75,8 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
     }
 
 	/**
+	 * Returns the initial priority of the 
+	 * 
 	 * @return the initialPriority
 	 */
 	public Integer getInitialPriority() {
