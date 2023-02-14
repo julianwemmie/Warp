@@ -75,7 +75,7 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
     }
 
 	/**
-	 * Returns the initial priority of the 
+	 * Returns the initial priority of the flow.
 	 * 
 	 * @return the initialPriority
 	 */

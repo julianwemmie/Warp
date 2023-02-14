@@ -15,3 +15,6 @@ and the function outputs the file with the flows alphabetically ordered and numb
 <br>
 2/9/2023: <br>
 Julian Wemmie: Added javadocs to all attributes of Warp.java
+
+2/13/2023: <br>
+Ethan Boileau: Added Javadocs to Flow.java, WorkLoad.java, and ProgramVisualization.java
