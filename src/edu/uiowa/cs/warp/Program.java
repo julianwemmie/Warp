@@ -7,15 +7,32 @@ import java.util.HashMap;
 
 
 /**
+ * Contains the main logic for constructing schedules given a schedule choice and number of channels.
+ * 
  * @author sgoddard
  *
  */
 // Old Scheduler Worked as class Scheduler{} on Feb 17
 public class Program implements SystemAttributes {
 
+  /**
+   * Used to store and possibly update the priorSrcInstruction during optimization
+   */
   private static final String UNKNOWN = "Unknown";
+  
+  /**
+   * Default program instruction
+   */
   private static final String SLEEP_INSTRUCTION = "sleep";
+  
+  /**
+   * Fragment of wait() to detect in program execution
+   */
   private static final String WAIT_FRAGMENT = "wait(";
+  
+  /**
+   * Fragment of else pull() to find in program execution
+   */
   private static final String ELSE_PULL_FRAGMENT = "else pull(";
 
   // Global flags and data structures
@@ -63,6 +80,9 @@ public class Program implements SystemAttributes {
     this.deadlineMisses = new Description();
   }
 
+  /**
+   * Getter method to retrieve workLoad from which schedules are built.
+   */
   public WorkLoad toWorkLoad() {
     return workLoad;
   }
@@ -172,14 +192,8 @@ public class Program implements SystemAttributes {
     var hyperPeriod = workLoad.getHyperPeriod();
     for (int i = 0; i < hyperPeriod; i++) { // This loop makes sure the schedule is full up to the
                                             // period and the channels entries are all initialized
-      var newInstructionTimeSlot = new InstructionTimeSlot(nNodes, SLEEP_INSTRUCTION); // create a
-                                                                                       // time slot
-                                                                                       // for
-                                                                                       // nNodes,
-                                                                                       // each
-                                                                                       // initialized
-                                                                                       // with a
-                                                                                       // SLEEP_INSTRUCTION
+      var newInstructionTimeSlot = new InstructionTimeSlot(nNodes, SLEEP_INSTRUCTION); 
+      // create a time slot for nNodes, each initialized with a SLEEP_INSTRUCTION
       schedule.add(newInstructionTimeSlot);
       channelsAvailable.addNewChannelSet();// initially, all channels are available in each time
                                            // slot
@@ -228,17 +242,8 @@ public class Program implements SystemAttributes {
       var FlowSrcInstructionTimeSlot = flowPhase; // initialize the time at which the flow's src
                                                   // node can first transmit
       for (int instance = 0; instance < hyperPeriod / flowPeriod; instance++) {
-        for (int flowNodeIndex = 0; flowNodeIndex < nNodesInFlow - 1; flowNodeIndex++) { // don't
-                                                                                         // push for
-                                                                                         // last
-                                                                                         // node, so
-                                                                                         // stop at
-                                                                                         // node
-                                                                                         // n-1,
-                                                                                         // which is
-                                                                                         // 2 less
-                                                                                         // than
-                                                                                         // count
+        for (int flowNodeIndex = 0; flowNodeIndex < nNodesInFlow - 1; flowNodeIndex++) { 
+        	// don't push for last node, so stop at node n-1, which is 2 less than count
           var currentNodeName = nodesInFlow[flowNodeIndex]; // get name of current node in the flow
                                                             // (aka source of data)
           if (e2eFlag) {
@@ -262,35 +267,21 @@ public class Program implements SystemAttributes {
             var phase = instance * flowPeriod + flowPhase; // update phase for the instance of the
                                                            // flow release, which happens once every
                                                            // period in the hyperPeriod
-            var firstPossibleSlot = Math.max(phase, FlowSrcInstructionTimeSlot); // make sure
-                                                                                 // precedence
-                                                                                 // constraints on
-                                                                                 // flow are
-                                                                                 // preserved
+            var firstPossibleSlot = Math.max(phase, FlowSrcInstructionTimeSlot); 
+            // make sure precedence constraints on flow are preserved
             Integer instructionIndex = findNextAvailableInstructionTimeSlot(schedule,
                 firstPossibleSlot, flowNodeIndex, index, nTx, previousNodeInstruction,
                 currentNodeInstruction, SLEEP_INSTRUCTION, realtimeHART, optimizationRequested,
                 nodeIndex.get(currentNodeName), nodeIndex.get(snk));
-            if (instructionIndex >= schedule.size()) { // instructionIndex is beyond current
-                                                       // schedule length. Increase schedule and
-                                                       // channelsAvailable tables
+            if (instructionIndex >= schedule.size()) { 
+            	// instructionIndex is beyond current schedule length. Increase schedule and channelsAvailable tables
               for (int i = schedule.size(); i <= instructionIndex; i++) {
-                var newInstructionTimeSlot = new InstructionTimeSlot(nNodes, SLEEP_INSTRUCTION); // create
-                                                                                                 // a
-                                                                                                 // time
-                                                                                                 // slot
-                                                                                                 // for
-                                                                                                 // nNodes,
-                                                                                                 // each
-                                                                                                 // initialized
-                                                                                                 // with
-                                                                                                 // a
-                                                                                                 // SLEEP_INSTRUCTION
+                var newInstructionTimeSlot = new InstructionTimeSlot(nNodes, SLEEP_INSTRUCTION); 
+                // create a time slot for nNodes, each initialized with a SLEEP_INSTRUCTION
                 schedule.add(newInstructionTimeSlot);
-                channelsAvailable.addNewChannelSet(); // need make sure we have channels available
-                                                      // for all slots. instructionIndex may be >
-                                                      // initialized size of array because of
-                                                      // phases...
+                channelsAvailable.addNewChannelSet(); 
+                // need make sure we have channels available for all slots. instructionIndex may be >
+                // initialized size of array because of phases...
               }
             }
             String channel = findNextAvailableChannel(schedule, instructionNodeName,
@@ -317,17 +308,8 @@ public class Program implements SystemAttributes {
                                                          // schedule lenght. Increase schedule and
                                                          // channelsAvailable tables
                 for (int i = schedule.size(); i <= instructionIndex; i++) {
-                  var newInstructionTimeSlot = new InstructionTimeSlot(nNodes, SLEEP_INSTRUCTION); // create
-                                                                                                   // a
-                                                                                                   // time
-                                                                                                   // slot
-                                                                                                   // for
-                                                                                                   // nNodes,
-                                                                                                   // each
-                                                                                                   // initialized
-                                                                                                   // with
-                                                                                                   // a
-                                                                                                   // SLEEP_INSTRUCTION
+                  var newInstructionTimeSlot = new InstructionTimeSlot(nNodes, SLEEP_INSTRUCTION); 
+                  // create a time slot for nNodes, each initialized with a SLEEP_INSTRUCTION
                   schedule.add(newInstructionTimeSlot);
                   channelsAvailable.addNewChannelSet(); // need make sure we have channels available
                                                         // for all slots. instructionIndex may be >
@@ -350,12 +332,8 @@ public class Program implements SystemAttributes {
               var priorInstructionTimeSlotArrayList = schedule.get(instructionIndex - 1);
               var priorInstructionTimeSlot = priorInstructionTimeSlotArrayList
                   .toArray(new String[priorInstructionTimeSlotArrayList.size()]);
-              var priorInstruction = priorInstructionTimeSlot[nodeIndex.get(snk)]; // get
-                                                                                   // instruction
-                                                                                   // scheduled for
-                                                                                   // snk to execute
-                                                                                   // in the prior
-                                                                                   // time slot
+              var priorInstruction = priorInstructionTimeSlot[nodeIndex.get(snk)]; 
+              // get instruction scheduled for snk to execute in the prior time slot
               if (index == (nTx - 1)) {
                 String hasSubstring = String.format("if has(%s", flowName);
                 String elseSubString = "else pull(";
@@ -414,16 +392,8 @@ public class Program implements SystemAttributes {
                 // Anywhere else? :-) Probably better figure it out!!
                 if (!priorInstruction.contains(ELSE_PULL_FRAGMENT)
                     && !priorInstruction.contains(WAIT_FRAGMENT)
-                    && !priorInstruction.contains(SLEEP_INSTRUCTION) && !realtimeHART) { // The sink
-                                                                                         // node is
-                                                                                         // not
-                                                                                         // waiting,
-                                                                                         // so add
-                                                                                         // this
-                                                                                         // instruction
-                                                                                         // as an
-                                                                                         // else to
-                                                                                         // it
+                    && !priorInstruction.contains(SLEEP_INSTRUCTION) && !realtimeHART) { 
+                	// The sink node is not waiting, so add this instruction as an else to it
                   // Also need to make sure we haven't already combined a prior instruction by
                   // moving it to the else clause. May need a smarter way to do this later...
                   var instructionParametersArrayList =
@@ -443,21 +413,10 @@ public class Program implements SystemAttributes {
                         priorInstruction);
                     System.err.println(msg);
                   }
-                  priorSrcInstruction = priorInstructionTimeSlot[nodeIndex.get(currentNodeName)]; // get
-                                                                                                  // instruction
-                                                                                                  // scheduled
-                                                                                                  // for
-                                                                                                  // snk/curentNodeName)
-                                                                                                  // to
-                                                                                                  // execute
-                                                                                                  // in
-                                                                                                  // the
-                                                                                                  // prior
-                                                                                                  // time
-                  if (priorInstructionSnk.equals(currentNodeName)) { // will try to push and pull
-                                                                     // to/from the same node, so
-                                                                     // use the prior instruction
-                                                                     // channel
+                  priorSrcInstruction = priorInstructionTimeSlot[nodeIndex.get(currentNodeName)]; 
+                  // get instruction scheduled for sink/curentNodeName) to execute in the prior time
+                  if (priorInstructionSnk.equals(currentNodeName)) { 
+                	  // will try to push and pull to/from the same node, so use the prior instruction channel
                     newInstruction = priorInstruction
                         + elsePullClause(flowName, currentNodeName, snk, priorInstructionChannel);
                     instructionIndex -= 1; // set instructionIndex to the priorInstruction index so
@@ -1142,6 +1101,9 @@ public class Program implements SystemAttributes {
     scheduleBuilt = schedule;
   }
 
+  /**
+   * Getter method to retrieve built schedule from program.
+   */
   public ProgramSchedule getSchedule() {
     return scheduleBuilt;
   }
@@ -1202,6 +1164,11 @@ public class Program implements SystemAttributes {
     return workLoad.getNumFaults();
   }
 
+  /**
+   * Maps nodes from workload to their respective indexes.
+   * 
+   * @return HashMap of node indexes
+   */
   public HashMap<String, Integer> getNodeMapIndex() {
     var orderedNodes = workLoad.getNodeNamesOrderedAlphabetically(); // create an array of node
                                                                      // names

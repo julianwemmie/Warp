@@ -6,23 +6,75 @@ package edu.uiowa.cs.warp;
 import java.io.File;
 
 /**
+ * Handles visualizations for Warp program outputs.
+ * This includes creating either GraphViz files (.gv) or WARP files (.wf) and 
+ * displaying graphs in a new window.
+ * 
  * @author sgoddard
  * @version 1.5
  */
 public class VisualizationImplementation implements Visualization {
 
+  /**
+   * Visualization created based on selected choice.
+   */
   private Description visualization;
+  
+  /**
+   * Stored visualization to be written to file
+   */
   private Description fileContent;
+  
+  /**
+   * Window containing gui visualization.
+   * @see GuiVisualization
+   */
   private GuiVisualization window;
+  
+  /**
+   * The name of the output file.
+   */
   private String fileName;
+  
+  /**
+   * The name of the input file.
+   */
   private String inputFileName;
+  
+  /**
+   * Formatted file path.
+   */
   private String fileNameTemplate;
+  
+  /**
+   * File Manager to help with I/O
+   * @see FileManager
+   */
   private FileManager fm = null;
+  
+  /**
+   * Warp output to be visualized.
+   */
   private WarpInterface warp = null;
+  
+  /**
+   * Warp workload to be visualized.
+   */
   private WorkLoad workLoad = null;
+  
+  /**
+   * Specific implementation of visualization based on option selected.
+   */
   private VisualizationObject visualizationObject;
 
 
+  /**
+   * Creates visualization from warp program output.
+   * 
+   * @param warp WarpInterface object. 
+   * @param outputDirectory Where to save the visualization
+   * @param choice Type of visualization to create. @see Visualization
+   */
   public VisualizationImplementation(WarpInterface warp, String outputDirectory,
       SystemChoices choice) {
     this.fm = new FileManager();
@@ -33,6 +85,13 @@ public class VisualizationImplementation implements Visualization {
     createVisualization(choice);
   }
 
+  /**
+   * Creates visualization from given workload.
+   * 
+   * @param workLoad WorkLoad object
+   * @param outputDirectory Where to save the visualization
+   * @param choice Type of visualization to create. @see Visualization
+   */
   public VisualizationImplementation(WorkLoad workLoad, String outputDirectory,
       WorkLoadChoices choice) {
     this.fm = new FileManager();
@@ -43,6 +102,9 @@ public class VisualizationImplementation implements Visualization {
     createVisualization(choice);
   }
 
+  /**
+   * Displays visualization in a new window.
+   */
   @Override
   public void toDisplay() {
     // System.out.println(displayContent.toString());
@@ -52,11 +114,18 @@ public class VisualizationImplementation implements Visualization {
     }
   }
 
+  /**
+   * Writes visualization to a file.
+   */
   @Override
   public void toFile() {
     fm.writeFile(fileName, fileContent.toString());
   }
 
+  
+  /**
+   * Converts visualization object to string format.
+   */
   @Override
   public String toString() {
     return visualization.toString();
