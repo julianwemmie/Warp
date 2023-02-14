@@ -230,6 +230,13 @@ public class Warp {
 
   }
 
+  /**
+   * Visualizes workload by creating visualization object from workload object.
+   * Either prints to console or displays GUI depending on workload choice.
+   * 
+   * @param workLoad
+   * @param choice
+   */
   private static void visualize(WorkLoad workLoad, WorkLoadChoices choice) {
     var viz =
         VisualizationFactory.createWorkLoadVisualization(workLoad, outputSubDirectory, choice);
@@ -244,6 +251,13 @@ public class Warp {
     }
   }
 
+  /**
+   * Visualizes workload by creating visualization object from WarpInterface object.
+   * Saves visualization to file.
+   * 
+   * @param workLoad
+   * @param choice
+   */
   private static void visualize(WarpInterface warp, SystemChoices choice) {
     var viz = VisualizationFactory.createProgramVisualization(warp, outputSubDirectory, choice);
     if (viz != null) {
@@ -255,12 +269,22 @@ public class Warp {
     }
   }
 
+  /**
+   * Verifies deadlines, reliabilities, and channel conflicts.
+   * 
+   * @param warp
+   */
   private static void verifyPerformanceRequirements(WarpInterface warp) {
     verifyDeadlines(warp);
     verifyReliabilities(warp);
     verifyNoChannelConflicts(warp);
   }
 
+  /**
+   * Verifies end to end reliabilities and displays to console.
+   * 
+   * @param warp
+   */
   private static void verifyReliabilities(WarpInterface warp) {
     if (schedulerSelected != ScheduleChoices.RTHART) {
       /* RealTime HART doesn't adhere to reliability targets */
@@ -277,6 +301,11 @@ public class Warp {
     }
   }
 
+  /**
+   * Verifies that all flows meet their deadlines.
+   * 
+   * @param warp
+   */
   private static void verifyDeadlines(WarpInterface warp) {
     if (!warp.deadlinesMet()) {
       System.err.printf("\n\tERROR: Not all flows meet their deadlines under %s scheduling.\n",
@@ -288,6 +317,11 @@ public class Warp {
     }
   }
 
+  /**
+   * Checks for conflicts between channels and prints to console.
+   * 
+   * @param warp
+   */
   private static void verifyNoChannelConflicts(WarpInterface warp) {
     if (warp.toChannelAnalysis().isChannelConflict()) {
       System.err
@@ -300,6 +334,11 @@ public class Warp {
     }
   }
 
+  /**
+   * Parses program arguments and assigns each attribute.
+   * 
+   * @param args
+   */
   private static void setWarpParameters(String[] args) { // move command line parsing into this
                                                          // function--need to set up globals?
 
@@ -433,6 +472,9 @@ public class Warp {
     }
   }
 
+  /**
+   * Displays warp parameters to console.
+   */
   private static void printWarpParameters() { // print all system configuration parameters
     // Print out each of the system configuration values
     System.out.println("WARP system configuration values:");

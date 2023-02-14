@@ -173,6 +173,12 @@ public class VisualizationImplementation implements Visualization {
     }
   }
 
+  /**
+   * Generates visualization from workload choice.
+   * Either communication graph, graphviz, or input graph.
+   * 
+   * @param choice
+   */
   private void createVisualization(WorkLoadChoices choice) {
     switch (choice) { // select the requested visualization
       case COMUNICATION_GRAPH:
@@ -194,6 +200,12 @@ public class VisualizationImplementation implements Visualization {
     }
   }
 
+  /**
+   * Creates visualization and reads parameters from visualization object.
+   * 
+   * @param <T>
+   * @param obj
+   */
   private <T extends VisualizationObject> void createVisualization(T obj) {
     visualization = obj.visualization();
     fileContent = obj.fileVisualization();
@@ -202,6 +214,12 @@ public class VisualizationImplementation implements Visualization {
     visualizationObject = obj;
   }
 
+  /**
+   * Generates full path to output file.
+   * 
+   * @param outputDirectory
+   * @return
+   */
   private String createFileNameTemplate(String outputDirectory) {
     String fileNameTemplate;
     var workingDirectory = fm.getBaseDirectory();
