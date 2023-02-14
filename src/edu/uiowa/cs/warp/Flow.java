@@ -3,16 +3,12 @@ package edu.uiowa.cs.warp;
 import java.util.ArrayList;
 
 /**
- * Flow is a java class in which the user defines flows based on the graph file provided.
- * The flows, edges, and linkTxAndTotalCost are all added to separate ArrayList which are stored and can
- * be accessed if needed. It is able to sort the flows based on the 
- * 
+ * Flow is a java class in which the user creates a flow object based on the graph file provided.
+ * The flows, edges, link transmission and total cost are all added to separate ArrayLists which are stored and can
+ * be accessed if needed. Methods inside the class allow the user to manipulate certain aspects of the flow and return
+ * certain values.
  * 
  * @author sgoddard
- *
- *
- *
- *
  */
 public class Flow extends SchedulableObject implements Comparable<Flow>{
 
@@ -75,7 +71,7 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
     }
 
 	/**
-	 * Returns the initial priority of the flow.
+	 * Gets the initial priority of the flow.
 	 * 
 	 * @return the initialPriority
 	 */
@@ -84,6 +80,8 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 	}
 
 	/**
+	 * Gets the index of the flow.
+	 *  
 	 * @return the index
 	 */
 	public Integer getIndex() {
@@ -91,6 +89,8 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 	}
 
 	/**
+	 * Gets the number of transmissions per link of the flow.
+	 * 
 	 * @return the numTxPerLink
 	 */
 	public Integer getNumTxPerLink() {
@@ -98,14 +98,18 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 	}
 
 	/**
-	 * @return the nodes
+	 * Gets and ArrayList of nodes in the flow.
+	 * 
+	 * @return nodes
 	 */
 	public ArrayList<Node> getNodes() {
 		return nodes;
 	}
 	
 	/**
-	 * @return the edges
+	 * Gets and ArrayList of edges in the flow.
+	 * 
+	 * @return edges
 	 */
 	public ArrayList<Edge> getEdges() {
 		return edges;
@@ -113,6 +117,8 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 
 	/**
 	 * Add an edge to the flow.
+	 * 
+	 * @param edge
 	 */
 	public void addEdge(Edge edge) {
 		/* set predecessor and add edge to flow */
@@ -123,7 +129,9 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 	}
 	
 	/**
-	 * Add a Node to the flow.
+	 * Add a node to the flow.
+	 * 
+	 * @param node
 	 */
 	public void addNode(Node node) {
 		/* set predecessor and add edge to flow */
@@ -133,49 +141,62 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 		nodePredecessor = node;
 	}
 	/**
-	 * @return the linkTxAndTotalCost
+	 * Gets the link transmission and total cost of the flow.
+	 * 
+	 * @return linkTxAndTotalCost
 	 */
 	public ArrayList<Integer> getLinkTxAndTotalCost() {
 		return linkTxAndTotalCost;
 	}
 
 	/**
-	 * @param initialPriority the initialPriority to set
+	 * Sets the initial priority of the flow.
+	 * 
+	 * @param initialPriority 
 	 */
 	public void setInitialPriority(Integer initialPriority) {
 		this.initialPriority = initialPriority;
 	}
 
 	/**
-	 * @param index the index to set
+	 * Sets the index of a node in the flow.
+	 * 
+	 * @param index 
 	 */
 	public void setIndex(Integer index) {
 		this.index = index;
 	}
 
 	/**
-	 * @param numTxPerLink the numTxPerLink to set
+	 * Sets the number of transmissions per link.
+	 * 
+	 * @param numTxPerLink 
 	 */
 	public void setNumTxPerLink(Integer numTxPerLink) {
 		this.numTxPerLink = numTxPerLink;
 	}
 
 	/**
-	 * @param nodes the nodes to set
+	 * Sets and ArrayList of nodes to the flow.
+	 * 
+	 * @param nodes 
 	 */
 	public void setNodes(ArrayList<Node> nodes) {
 		this.nodes = nodes;
 	}
 
 	/**
-	 * @param linkTxAndTotalCost the linkTxAndTotalCost to set
+	 * Sets an ArrayList of link transmission and total cost to the flow.
+	 * 
+	 * @param linkTxAndTotalCost 
 	 */
 	public void setLinkTxAndTotalCost(ArrayList<Integer> linkTxAndTotalCost) {
 		this.linkTxAndTotalCost = linkTxAndTotalCost;
 	}
 	/**
-	 * @param flow compares the flows based on priority.
-	 * Compared in ascending order with 0 being the highest.
+	 * Compares the flow based on priority. Ordered in ascending order with 0 being the highest priority.
+	 * 
+	 * @param flow 
 	 */
 	@Override
     public int compareTo(Flow flow) {
@@ -183,7 +204,9 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
         return flow.getPriority() > this.getPriority() ? -1 : 1;
     }
     /**
-     * @return the name
+     * Gets the name of the flow.
+     * 
+     * return getName();
      */
     @Override
     public String toString() {

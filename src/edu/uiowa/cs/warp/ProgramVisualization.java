@@ -1,22 +1,40 @@
-/**
- *Program Visualization is a class that allows the user to visualize
- *data gathered from WARP.
- * 
- */
+
 package edu.uiowa.cs.warp;
 
 /**
+ * Allows the user to generate a GUI to visualize WARP data given by .dsl files.
+ * If applicable, the GUI will contain minimum packet reception rate, End-to-End transmissions, 
+ * and number of channels.
+ *
  * @author sgoddard
  * @version 1.5
  * 
  */
 public class ProgramVisualization extends VisualizationObject {
-
+/**
+ * Sets the suffix of the file to be only .dsl
+ * 
+ */
   private static final String SOURCE_SUFFIX = ".dsl";
+  /**
+   * The WARP source code to be used.
+   */
   private ProgramSchedule sourceCode;
+  /**
+   * The program to draw data from.
+   * 
+   */
   private Program program;
+  /**
+   * Deadlines met flag.
+   */
   private Boolean deadlinesMet;
-
+  /**
+   * Constructor for new ProgramVisualization. Used WARP file as input changes it to
+   * a program and gets the schedule and deadlines met.
+   * 
+   * @param warp
+   */
   ProgramVisualization(WarpInterface warp) {
     super(new FileManager(), warp, SOURCE_SUFFIX);
     this.program = warp.toProgram();
@@ -25,13 +43,15 @@ public class ProgramVisualization extends VisualizationObject {
   }
   /**
    * Creates a Java Swing GUI window containing the title, column headers and the visualization data.
+   * 
+   * @return new GuiVisualization
    */
   @Override
   public GuiVisualization displayVisualization() {
     return new GuiVisualization(createTitle(), createColumnHeader(), createVisualizationData());
   }
   /**
-   * Creates a header for the GUI visualization. Takes the tile from the program's scheduler name,
+   * Creates a header for the GUI visualization. Takes the tile from the program's scheduler name, if applicable
    *  adds number of faults (if greater than 0), minimum packet reception rate, E2E, and number of
    *  channels.
    *  @return header
@@ -54,6 +74,7 @@ public class ProgramVisualization extends VisualizationObject {
   }
   /**
    * Creates a footer with a message determined by if all the flows met their deadlines.
+   * 
    * @return footer
    */
   @Override
@@ -87,6 +108,8 @@ public class ProgramVisualization extends VisualizationObject {
   }
   /**
    * Creates a string matrix using the data collected from visualizationData.
+   * 
+   * @return visualizationData
    */
   @Override
   protected String[][] createVisualizationData() {
@@ -105,8 +128,9 @@ public class ProgramVisualization extends VisualizationObject {
     return visualizationData;
   }
   /**
-   * Creates a title 
-   * @return
+   * Creates a title for the GUI using the name from the program.
+   * 
+   * 
    */
   private String createTitle() {
     return String.format("WARP program for graph %s\n", program.getName());
