@@ -3,7 +3,13 @@ package edu.uiowa.cs.warp;
 import java.util.ArrayList;
 
 /**
+ * Flow is a java class in which the user defines flows based on the graph file provided.
+ * The flows, edges, and linkTxAndTotalCost are all added to separate ArrayList which are stored and can
+ * be accessed if needed. It is able to sort the flows based on the 
  * @author sgoddard
+ *
+ *
+ *
  *
  */
 public class Flow extends SchedulableObject implements Comparable<Flow>{
@@ -95,14 +101,14 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 	}
 	
 	/**
-	 * @return the nodes
+	 * @return the edges
 	 */
 	public ArrayList<Edge> getEdges() {
 		return edges;
 	}
 
 	/**
-	 * Add and edge to the flow.
+	 * Add an edge to the flow.
 	 */
 	public void addEdge(Edge edge) {
 		/* set predecessor and add edge to flow */
@@ -113,7 +119,7 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 	}
 	
 	/**
-	 * Add and edge to the flow.
+	 * Add a Node to the flow.
 	 */
 	public void addNode(Node node) {
 		/* set predecessor and add edge to flow */
@@ -163,13 +169,18 @@ public class Flow extends SchedulableObject implements Comparable<Flow>{
 	public void setLinkTxAndTotalCost(ArrayList<Integer> linkTxAndTotalCost) {
 		this.linkTxAndTotalCost = linkTxAndTotalCost;
 	}
-
+	/**
+	 * @param flow compares the flows based on priority.
+	 * Compared in ascending order with 0 being the highest.
+	 */
 	@Override
     public int compareTo(Flow flow) {
     	// ascending order (0 is highest priority)
         return flow.getPriority() > this.getPriority() ? -1 : 1;
     }
-    
+    /**
+     * @return the name
+     */
     @Override
     public String toString() {
         return getName();

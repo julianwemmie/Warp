@@ -1,4 +1,6 @@
 /**
+ *Program Visualization is a class that allows the user to visualize
+ *data gathered from WARP.
  * 
  */
 package edu.uiowa.cs.warp;
@@ -21,12 +23,19 @@ public class ProgramVisualization extends VisualizationObject {
     this.sourceCode = program.getSchedule();
     this.deadlinesMet = warp.deadlinesMet();
   }
-
+  /**
+   * Creates a Java Swing GUI window containing the title, column headers and the visualization data.
+   */
   @Override
   public GuiVisualization displayVisualization() {
     return new GuiVisualization(createTitle(), createColumnHeader(), createVisualizationData());
   }
-
+  /**
+   * Creates a header for the GUI visualization. Takes the tile from the program's scheduler name,
+   *  adds number of faults (if greater than 0), minimum packet reception rate, E2E, and number of
+   *  channels.
+   *  @return header
+   */
   @Override
   protected Description createHeader() {
     Description header = new Description();
@@ -43,7 +52,10 @@ public class ProgramVisualization extends VisualizationObject {
     header.add(String.format("nChannels: %d\n", program.getNumChannels()));
     return header;
   }
-
+  /**
+   * Creates a footer with a message determined by if all the flows met their deadlines.
+   * @return footer
+   */
   @Override
   protected Description createFooter() {
     Description footer = new Description();
@@ -57,8 +69,11 @@ public class ProgramVisualization extends VisualizationObject {
     footer.add(String.format("// %s", deadlineMsg));
     return footer;
   }
-
-
+  /**
+   * Creates a string array of column headers ordered alphabetically.
+   * @return columnNames
+   */
+  
   @Override
   protected String[] createColumnHeader() {
     var orderedNodes = program.toWorkLoad().getNodeNamesOrderedAlphabetically();
@@ -70,7 +85,9 @@ public class ProgramVisualization extends VisualizationObject {
     }
     return columnNames;
   }
-
+  /**
+   * Creates a string matrix using the data collected from visualizationData.
+   */
   @Override
   protected String[][] createVisualizationData() {
     if (visualizationData == null) {
@@ -87,7 +104,10 @@ public class ProgramVisualization extends VisualizationObject {
     }
     return visualizationData;
   }
-
+  /**
+   * Creates a title 
+   * @return
+   */
   private String createTitle() {
     return String.format("WARP program for graph %s\n", program.getName());
   }
