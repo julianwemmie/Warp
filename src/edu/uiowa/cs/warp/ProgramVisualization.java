@@ -51,9 +51,10 @@ public class ProgramVisualization extends VisualizationObject {
     return new GuiVisualization(createTitle(), createColumnHeader(), createVisualizationData());
   }
   /**
-   * Creates a header for the GUI visualization. Takes the tile from the program's scheduler name, if applicable
+   * Creates a header for the GUI visualization, takes the tile from the program's scheduler name. If applicable
    *  adds number of faults (if greater than 0), minimum packet reception rate, E2E, and number of
    *  channels.
+   *  
    *  @return header
    */
   @Override
@@ -73,7 +74,7 @@ public class ProgramVisualization extends VisualizationObject {
     return header;
   }
   /**
-   * Creates a footer with a message determined by if all the flows met their deadlines.
+   * Creates a footer. The message is determined by if all the flows met their deadlines.
    * 
    * @return footer
    */
@@ -92,6 +93,7 @@ public class ProgramVisualization extends VisualizationObject {
   }
   /**
    * Creates a string array of column headers ordered alphabetically.
+   * 
    * @return columnNames
    */
   
