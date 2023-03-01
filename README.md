@@ -30,3 +30,26 @@ Julian Wemmie: Added Javadocs to VisualizationImplementation.java and to the fol
 2/14/2023: <br>
 Ethan Boileau: Added Javadocs to ProgramVisualization.java, added touch-ups to previous Javadocs.
 
+<h3> HW3 Changes 2/15/23 - 2/28/23 </h3> 
+Ethan Boileau: added test methods for the following methods in WorkLoad.java:
+<li>addFlow()</li>
+<li>addNodeToFlow() </li>
+<li>getTotalTxAttemptsInFlow()</li>
+<li>getFlowPriority</li>
+<li>setFlowPriority</li>
+<li>getFlowTxAttemptsPerLink() </li>
+<li>setFlowsInRMorder() </li>
+<li>getNodeNamesOrderedAlphabetically</li>
+
+2/28/23: <br>
+Julian Wemmie: added test methods for the following methods in WorkLoad.java
+<li>getFlowNames() </li>
+<li>getNodeIndex() </li>
+<li>getNodesInFlow() </li>
+<li>getHyperPeriod() </li>
+<li>getNumTxAttemptsPerLink() </li>
+<li>maxFlowLength() </li>
+<li>getFlowDeadline() </li>
+<li>setFlowDeadline()</li>
+
+-Generated javadoc
