@@ -53,3 +53,9 @@ Julian Wemmie: added test methods for the following methods in WorkLoad.java
 <li>setFlowDeadline()</li>
 
 -Generated javadoc
+<h3>HW4 changes 3/6/2023 </h3>
+<li>Created UML diagram for ScheduleObject.java</li>
+<li>Created UML diagram for WorkLoad.java</li>
+<li>Created UML diagram "Reliability.uml" consisting of all
+Reliability*.java classes </li>
+<li>Added getReliabilities() method to ReliabilityAnalysis.java</li>
