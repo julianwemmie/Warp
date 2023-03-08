@@ -59,3 +59,5 @@ Julian Wemmie: added test methods for the following methods in WorkLoad.java
 <li>Created UML diagram "Reliability.uml" consisting of all
 Reliability*.java classes </li>
 <li>Added getReliabilities() method to ReliabilityAnalysis.java</li>
+<h3> 3/7/2023 </h3>
+<li>showed parents for ReliabilityVisualization.java</li>
