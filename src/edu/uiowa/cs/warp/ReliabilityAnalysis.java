@@ -84,22 +84,25 @@ public class ReliabilityAnalysis {
 		    // current time slot (i.e., the row it is in)
 		    // will add rows as we compute reliabilities until the final reliability is reached
 		    // for all nodes.
-		    var reliabilityWindow = new Vector<Vector<Double>>();
-		    var newReliabilityRow = new Vector<Double>();
+		   ReliabilityTable reliabilityWindow = new ReliabilityTable();
+		   ReliabilityRow newReliabilityRow = new ReliabilityRow();
 		    for (int i = 0; i < nNodesInFlow; i++) {
 		      newReliabilityRow.add(0.0); // create the the row initialized with 0.0 values
 		    }
 		    reliabilityWindow.add(newReliabilityRow); // now add row to the reliability window, Time 0
-		    Vector<Double> tmpVector = reliabilityWindow.get(0);
-		    var currentReliabilityRow = tmpVector.toArray(new Double[tmpVector.size()]);
+		    ReliabilityRow tmpVector = reliabilityWindow.get(0);
+		    ArrayList<Double> currentReliabilityRow = new ArrayList<Double>();
+		    for (int i = 0; i < tmpVector.size(); i++) {
+		    	currentReliabilityRow.add(tmpVector.get(i));
+		    }
 		    // var currentReliabilityRow = (Double[]) reliabilityWindow.get(0).toArray();
 		    // Want reliabilityWindow[0][0] = 1.0 (i.e., P(packet@FlowSrc) = 1
 		    // but I din't want to mess with the newReliablityRow vector I use below
 		    // So, we initialize this first entry to 1.0, which is reliabilityWindow[0][0]
 		    // We will then update this row with computed values for each node and put it
 		    // back in the matrix
-		    currentReliabilityRow[0] = 1.0; // initialize (i.e., P(packet@FlowSrc) = 1
-		    Double e2eReliabilityState = currentReliabilityRow[nNodesInFlow - 1]; // the analysis will end
+		    currentReliabilityRow.set(0, 1.0); // initialize (i.e., P(packet@FlowSrc) = 1
+		    Double e2eReliabilityState = currentReliabilityRow.get(nNodesInFlow - 1); // the analysis will end
 		                                                                          // when the 2e2
 		                                                                          // reliability metrix is
 		                                                                          // met, initially the
@@ -109,10 +112,17 @@ public class ReliabilityAnalysis {
 		    var timeSlot = 0; // start time at 0
 		    while (e2eReliabilityState < e2e) { // change to while and increment increment timeSlot becuase
 		                                        // we don't know how long this schedule window will last
-		      var prevReliabilityRow = currentReliabilityRow;
-		      currentReliabilityRow = newReliabilityRow.toArray(new Double[newReliabilityRow.size()]); // would
-		                                                                                               // be
-		                                                                                               // reliabilityWindow[timeSlot]
+		      ArrayList<Double> prevReliabilityRow = new ArrayList<Double>(currentReliabilityRow);
+		      currentReliabilityRow.clear(); // would
+			    for (int i = 0; i < newReliabilityRow.size(); i++) {
+			    	currentReliabilityRow.add(newReliabilityRow.get(i));
+			    }
+		       
+		      
+		      
+		      
+		      // be
+		                                                                                         // reliabilityWindow[timeSlot]
 		                                                                                               // if
 		                                                                                               // working
 		                                                                                               // through
@@ -131,8 +141,8 @@ public class ReliabilityAnalysis {
 		                                                                             // sink->src pair)
 		        var flowSrcNodeindex = nodeIndex;
 		        var flowSnkNodeindex = nodeIndex + 1;
-		        var prevSrcNodeState = prevReliabilityRow[flowSrcNodeindex];
-		        var prevSnkNodeState = prevReliabilityRow[flowSnkNodeindex];
+		        var prevSrcNodeState = prevReliabilityRow.get(flowSrcNodeindex);
+		        var prevSnkNodeState = prevReliabilityRow.get(flowSnkNodeindex);
 		        Double nextSnkState;
 		        if ((prevSnkNodeState < minLinkReliablityNeded) && prevSrcNodeState > 0) { // do a push
 		                                                                                   // until PrevSnk
@@ -156,7 +166,7 @@ public class ReliabilityAnalysis {
 		                                           // next node and record the reliability met
 		        }
 
-		        if (currentReliabilityRow[flowSrcNodeindex] < prevReliabilityRow[flowSrcNodeindex]) { // probabilities
+		        if (currentReliabilityRow.get(flowSrcNodeindex) < prevReliabilityRow.get(flowSrcNodeindex)) { // probabilities
 		                                                                                              // are
 		                                                                                              // non-decreasing
 		                                                                                              // so
@@ -170,7 +180,7 @@ public class ReliabilityAnalysis {
 		                                                                                              // old
 		                                                                                              // value
 		                                                                                              // forward
-		          currentReliabilityRow[flowSrcNodeindex] = prevReliabilityRow[flowSrcNodeindex]; // carry
+		          currentReliabilityRow.set(flowSrcNodeindex, prevReliabilityRow.get(flowSrcNodeindex)); // carry
 		                                                                                          // forward
 		                                                                                          // the
 		                                                                                          // previous
@@ -193,7 +203,7 @@ public class ReliabilityAnalysis {
 		      }
 
 		      e2eReliabilityState = currentReliabilityRow[nNodesInFlow - 1];
-		      Vector<Double> currentReliabilityVector = new Vector<Double>();
+		      ReliabilityRow currentReliabilityVector = new ReliabilityRow();
 		      // convert the row to a vector so we can add it to the reliability window
 		      Collections.addAll(currentReliabilityVector, currentReliabilityRow);
 		      if (timeSlot < reliabilityWindow.size()) {
