@@ -5361,6 +5361,27 @@ snk nodes from the instruction string in a program schedule time slot.&#xD;
               <ownedOperation xmi:id="_fxhPsLxiEe2Pj61kfbEkwg" name="getReliabilities">
                 <ownedParameter xmi:id="_fxhPsbxiEe2Pj61kfbEkwg" type="_RlZIMLxiEe2Pj61kfbEkwg" direction="return"/>
               </ownedOperation>
+              <ownedOperation xmi:id="_-Om9EMi_Ee2Q06zi9Lxc2Q" name="numTxPerLinkAndTotalTxCost">
+                <ownedParameter xmi:id="_-Om9Eci_Ee2Q06zi9Lxc2Q" type="_R5gXALxiEe2Pj61kfbEkwg" direction="return"/>
+                <ownedParameter xmi:id="_-O1mkMi_Ee2Q06zi9Lxc2Q" name="flow" type="_Rj5TYLxiEe2Pj61kfbEkwg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_SX_tMMjAEe2Q06zi9Lxc2Q" name="ReliabilityAnalysis">
+                <eAnnotations xmi:id="_JBXfkMjBEe2Q06zi9Lxc2Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                  <details xmi:id="_JBXfkcjBEe2Q06zi9Lxc2Q" key="create"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_u6_zoMjAEe2Q06zi9Lxc2Q" type="_RlU2wLxiEe2Pj61kfbEkwg" direction="return"/>
+                <ownedParameter xmi:id="_SYAUQMjAEe2Q06zi9Lxc2Q" name="e2e" type="_R8TMULxiEe2Pj61kfbEkwg"/>
+                <ownedParameter xmi:id="_SYAUQcjAEe2Q06zi9Lxc2Q" name="minPacketReceptionRate" type="_R8TMULxiEe2Pj61kfbEkwg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_WkQSQMjAEe2Q06zi9Lxc2Q" name="ReliabilityAnalysis">
+                <eAnnotations xmi:id="_LHNKsMjBEe2Q06zi9Lxc2Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                  <details xmi:id="_LHNKscjBEe2Q06zi9Lxc2Q" key="create"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_McAacMjBEe2Q06zi9Lxc2Q" type="_RlU2wLxiEe2Pj61kfbEkwg" direction="return"/>
+                <ownedParameter xmi:id="_WkQSQcjAEe2Q06zi9Lxc2Q" name="numFaults">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+                </ownedParameter>
+              </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Interface" xmi:id="_RlWE4LxiEe2Pj61kfbEkwg" name="ReliabilityParameters" visibility="package">
               <ownedComment xmi:id="_R_BJIrxiEe2Pj61kfbEkwg">
@@ -13719,6 +13740,7 @@ constructors are m = 0.9, e2e = 0.99, and numFaults = 1 when the second construc
       <packagedElement xmi:type="uml:Class" xmi:id="_R7QDdbxiEe2Pj61kfbEkwg" name="IntHolder"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_R7QqgbxiEe2Pj61kfbEkwg" name="StringHolder"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_-Ou44Mi_Ee2Q06zi9Lxc2Q" name="flow"/>
     <profileApplication xmi:id="_QdaMcLxiEe2Pj61kfbEkwg">
       <eAnnotations xmi:id="_QdaMcbxiEe2Pj61kfbEkwg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
@@ -14598,4 +14620,5 @@ constructors are m = 0.9, e2e = 0.99, and numFaults = 1 when the second construc
   <UMLLabProfile:Patch xmi:id="_S_yCkLxiEe2Pj61kfbEkwg" base_Element="_RkXNdLxiEe2Pj61kfbEkwg" patchText="@@ -254,22 +254,25 @@&#xA; MISS%22;%0D%0A&#xA;-public&#xA;+  private&#xA;  static &#xA;" conflicting="false"/>
   <UMLLabProfile:Patch xmi:id="_S_ypoLxiEe2Pj61kfbEkwg" base_Element="_RmAMMLxiEe2Pj61kfbEkwg" patchText="@@ -113,18 +113,16 @@&#xA; eChoices&#xA;-()&#xA;  %7B%0D%0A%09   &#xA;" conflicting="false"/>
   <UMLLabProfile:Patch xmi:id="_S_zQsLxiEe2Pj61kfbEkwg" base_Element="_RmJWILxiEe2Pj61kfbEkwg" patchText="@@ -145,26 +145,24 @@&#xA; ystemChoices&#xA;-()&#xA;  %7B%0D%0A    SOUR&#xA;@@ -284,18 +284,16 @@&#xA; dChoices&#xA;-()&#xA;  %7B%0D%0A    &#xA;" conflicting="false"/>
+  <UMLLabProfile:UnresolvedElement xmi:id="_-OxVIMi_Ee2Q06zi9Lxc2Q" base_Element="_-Ou44Mi_Ee2Q06zi9Lxc2Q"/>
 </xmi:XMI>
