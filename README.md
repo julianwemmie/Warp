@@ -62,5 +62,8 @@ Reliability*.java classes </li>
 <h3> 3/7/2023 </h3>
 <li>showed parents for ReliabilityVisualization.java</li>
 
-
-<li>Yoooo</li>
+<h3> HW5 changes 3/24/23 </h3>
+<li> Ethan and Patrick, used pair programming to complete the assignment</li>
+<li> Refactored two WorkLoad methods and added them to ReliabilityAnalysis</li>
+<li> Created ReliabilityAnalysis constructors to be able to access the WorkLoad methods </li>
+<li> Generated JavaDocs for the changes made to ReliabilityAnalysis</li>
