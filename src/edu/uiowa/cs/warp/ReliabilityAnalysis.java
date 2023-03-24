@@ -48,14 +48,67 @@ import java.util.Vector;
  *
  */
 public class ReliabilityAnalysis {
+	/**
+	 * Constant variable to store a constructor that sets the e2e and m 
+	 */
+	private static final String E2E_M_CONSTRUCTOR = "E2E_M_CONSTRUCTOR";
+	/**
+	 * Constant variable to store a constructor that sets the numFaults
+	 */
+	private static final String NUM_FAULTS_CONSTRUCTOR = "NUM_FAULTS_CONSTRUCTOR";
+			
 	
+	/**
+	 * default end-to-end reliability for all flows
+	 */
 	private Double e2e = 0.99;
-	private  Double minPacketReceptionRate = 0.9;
+	/**
+	 * the minimum packet reception rate which will be changed by the E2E_M_CONSTUCTOR
+	 */
+	private Double minPacketReceptionRate = 0.9;
+	/**
+	 * number of faults tolerated per edge
+	 */
 	private Integer numFaults = 0;
 	private Program program = null;
+	/**
+	 * Stores which constructor was used to create the reliability analysis.
+	 */
+	private String constructorUsed = null;
 	
+	/**
+	 * Creates a ReliabilityAnalysis object and sets the current constructor used to E2E_M_CONSTRUCTOR.
+	 * @param e2e
+	 * @param minPacketReceptionRate
+	 */
+	public ReliabilityAnalysis(Double e2e, Double minPacketReceptionRate) {		
+		this.e2e = e2e;
+		this.minPacketReceptionRate = minPacketReceptionRate;
+		this.constructorUsed = E2E_M_CONSTRUCTOR;
+	}
+	/**
+	 * Creates a ReliabilityAnalysis object and sets the current constructor used to NUM_FAULTS_CONSTRUCTOR.
+	 * @param numFaults
+	 * 
+	 */
+	public ReliabilityAnalysis(Integer numFaults) {
+		this.numFaults = numFaults;
+		this.constructorUsed = NUM_FAULTS_CONSTRUCTOR;
+		
+	}
+	/**
+	   * Creates an array list of the number of transmission attempts per link and the total
+	   * transmission attempts.
+	   * 
+	   * @param flow
+	   * @param e2e
+	   * @param M
+	   * @param optimizationRequested
+	   * @return nPushesArrayList
+	   */
 	public ArrayList<Integer> numTxAttemptsPerLinkAndTotalTxAttempts(Flow flow, Double e2e, Double M,
 		      boolean optimizationRequested) {
+		
 		    var nodesInFlow = flow.nodes;
 		    var nNodesInFlow = nodesInFlow.size(); // The last entry will contain the worst-case cost of
 		                                           // transmitting E2E in isolation
@@ -199,13 +252,13 @@ public class ReliabilityAnalysis {
 		                                                                                          // in this
 		                                                                                          // slot
 		        }
-		        currentReliabilityRow[flowSnkNodeindex] = nextSnkState;
+		        currentReliabilityRow.set(flowSnkNodeindex, nextSnkState);
 		      }
 
-		      e2eReliabilityState = currentReliabilityRow[nNodesInFlow - 1];
+		      e2eReliabilityState = currentReliabilityRow.get(nNodesInFlow - 1);
 		      ReliabilityRow currentReliabilityVector = new ReliabilityRow();
 		      // convert the row to a vector so we can add it to the reliability window
-		      Collections.addAll(currentReliabilityVector, currentReliabilityRow);
+		      Collections.addAll(currentReliabilityVector, currentReliabilityRow.toArray(new Double [0]));
 		      if (timeSlot < reliabilityWindow.size()) {
 		        reliabilityWindow.set(timeSlot, (currentReliabilityVector));
 		      } else {
@@ -219,7 +272,14 @@ public class ReliabilityAnalysis {
 		                                  // reliabilityWindow
 		    return nPushes;
 	}
+	/**
+	   * Calculates the fixed transmission per link, the total transmission cost, and returns it.
+	   * 
+	   * @param flow 
+	   * @return txArrayList 
+	   */
 	 public ArrayList<Integer> getFixedTxPerLinkAndTotalTxCost(Flow flow) {
+		 	
 		    var nodesInFlow = flow.nodes;
 		    var nNodesInFlow = nodesInFlow.size();
 		    ArrayList<Integer> txArrayList = new ArrayList<Integer>();
@@ -239,25 +299,23 @@ public class ReliabilityAnalysis {
 		    txArrayList.add(numEdgesInFlow + maxFaultsInFlow);
 		    return txArrayList;
 		  }
-	
+	 /**
+	  * Calculates the number of transmissions per link and total cost based on which constructor was used.
+	  * @param flow
+	  * @return ArrayList<Integer>
+	  */
 	public ArrayList<Integer> numTxPerLinkAndTotalTxCost(Flow flow) {
-		
-		if()
-		
+		if (this.constructorUsed.equals(E2E_M_CONSTRUCTOR)) {
+			return this.numTxAttemptsPerLinkAndTotalTxAttempts(flow, this.e2e, this.minPacketReceptionRate, true);
+		}
+		return this.getFixedTxPerLinkAndTotalTxCost(flow);
 	}
 
-	public ReliabilityAnalysis(Double e2e, Double minPacketReceptionRate) {		// TODO implement this operation
-		this.e2e = e2e;
-		this.minPacketReceptionRate = minPacketReceptionRate;
-	}
-
-	public ReliabilityAnalysis(Integer numFaults) {
-		// TODO implement this operation
-		throw new UnsupportedOperationException("not implemented");
-	}
+	
 
 	public ReliabilityAnalysis(Program program) {
-		// TODO Auto-generated constructor stub
+		this.program = program;
+		
 	}
 
 	public ReliabilityTable getReliabilities() {
@@ -269,5 +327,6 @@ public class ReliabilityAnalysis {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
+	
+	
 }
