@@ -563,24 +563,6 @@ public class WorkLoad extends WorkLoadDescription implements ReliabilityParamete
           + "trying to get its numTxPerLink property\n.", flowName);
     }
   }
-  /**
-   * Calculates the fixed transmission per link, the total transmission cost, and returns it.
-   * 
-   * @param flow the flow to be calculated
-   * @return txArrayList the ArrayList of fixed transmissions per link and total transmission cost values
-   */
-  
-  /**
-   * Creates an array list of the number of transmission attempts per link and the total
-   * transmission attempts.
-   * 
-   * @param flow
-   * @param e2e
-   * @param M
-   * @param optimizationRequested
-   * @return nPushesArrayList
-   */
-
     /**
    * Gets a String array of node names ordered alphabetically. If the node names 
    * are all integers, converts integers to alpha representation of integers.
