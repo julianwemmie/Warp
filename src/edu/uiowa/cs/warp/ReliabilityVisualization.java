@@ -23,6 +23,12 @@ public class ReliabilityVisualization  extends VisualizationObject {
 		super(new FileManager(), warp, SOURCE_SUFFIX);
 		this.warp = warp;
 		this.ra = warp.toReliabilityAnalysis();
+		
+		ReliabilityTable rt = new ReliabilityTable();
+		
+		public  helper() {
+			
+		}
 	}
 	
 /* File Visualization for workload defined in Example.txt follows. Note

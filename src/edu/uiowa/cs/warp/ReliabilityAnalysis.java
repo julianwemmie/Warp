@@ -269,7 +269,9 @@ public class ReliabilityAnalysis {
 		    var size = reliabilityWindow.size();
 		    nPushes.set(nNodesInFlow, size); // The total (worst-case) cost to transmit E2E in isolation with
 		                                  // specified reliability target is the number of rows in the
-		                                  // reliabilityWindow
+		    for (Object row : reliabilityWindow.toArray()) {
+	            System.out.println(row);
+	        }                              // reliabilityWindow
 		    return nPushes;
 	}
 	/**

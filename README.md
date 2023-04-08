@@ -66,4 +66,24 @@ Reliability*.java classes </li>
 <li> Ethan and Patrick, used pair programming to complete the assignment</li>
 <li> Refactored two WorkLoad methods and added them to ReliabilityAnalysis</li>
 <li> Created ReliabilityAnalysis constructors to be able to access the WorkLoad methods </li>
-<li> Generated JavaDocs for the changes made to ReliabilityAnalysis</li>
+<li> Generated JavaDocs for the changes made to ReliabilityAnalysis</li><br>
+
+<h3> Sprint 1 4/8/23 </h3>
+Group members: Ethan Boileau, Patrick Foster, Julian Wemmie, Avi Kaufman <br>
+<br>
+This is the first of three sprints dedicated to the final project. The final project is focused on creating code 
+to analyze and visualize the reliability of end-to-end message transmissions in a WARP program. This primary goal
+of the first sprint is to organize and lay out a plan of action to write code, test, and document our changes to 
+the ReliabilityAnalysis.java and ReliabilityVisualization.java classes. This Sprint contains a sequence diagram as 
+well as a PowerPoint. The sequence diagram details the steps and methods called in order for the ".ra" files to be 
+processed. The PowerPoint will be used as a method of delivery for further plan documentation. We will include the 
+tasks that need to be completed and by whom, our methods for testing, how we will document any code written, and any 
+other pertinent information:
+<li>Ethan: wrote README</li>
+<li>Julian:</li>
+<li>Patrick:</li>
+<li>Avi:</li>
+
+ 
+
+
