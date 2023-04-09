@@ -79,9 +79,9 @@ well as a PowerPoint. The sequence diagram details the steps and methods called 
 processed. The PowerPoint will be used as a method of delivery for further plan documentation. We will include the 
 tasks that need to be completed and by whom, our methods for testing, how we will document any code written, and any 
 other pertinent information:
-<li>Ethan: wrote README</li>
+<li>Ethan: Wrote README, PowerPoint</li>
 <li>Julian:</li>
-<li>Patrick:</li>
+<li>Patrick: </li>
 <li>Avi:</li>
 
  
