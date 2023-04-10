@@ -68,10 +68,18 @@ Reliability*.java classes </li>
 <li> Created ReliabilityAnalysis constructors to be able to access the WorkLoad methods </li>
 <li> Generated JavaDocs for the changes made to ReliabilityAnalysis</li><b
 
+<br><br><br><br>
 
-##### Final project - Sprint 1
-This is the first of three sprints dedicated to the final project. The final project is focused on creating code to analyze and visualize the reliability of end-to-end message transmissions in a WARP program. This primary goal of the first sprint is to organize and lay out a plan of action to write code, test, and document our changes to the ReliabilityAnalysis.java and ReliabilityVisualization.java classes. This Sprint contains a sequence diagram as well as a PowerPoint. The sequence diagram details the steps and methods called in order for the ".ra" files to be processed. The PowerPoint will be used as a method of delivery for further plan documentation. We will include the tasks that need to be completed and by whom, our methods for testing, how we will document any code written, and any other pertinent information:
-<li>Ethan: Wrote ReadME documentation and built out the powerpoint to outline the project's duties</li
+<h2> Final Project </h2>
+
+The final project is focused on creating code to analyze and visualize the reliability of end-to-end message transmissions in a WARP program. This primary goal of the first sprint is to organize and lay out a plan of action to write code, test, and document our changes to the ReliabilityAnalysis.java and ReliabilityVisualization.java classes.
+
+<h3> Final project - Sprint 1 </h3>
+
+This is the first of three sprints dedicated to the final project. This sprint is largely dedicated to planing out the following to Sprints. <br><br>A detailed grasp of the task to be done can be found in **SWD Project Plan.pptx**. The PowerPoint will be used as a method of delivery for further plan documentation. We will include the tasks that need to be completed and by whom, our methods for testing, how we will document any code written, and any other pertinent information.<br><br> An in depth look at the interactions between the objects and there methods can be found in **Sequence_Diagram.png**. The sequence diagram details the steps and methods called in order for the ".ra" files to be processed. <br><br>
+
+We allocated work for this sprint with the following work distribution:
+<li>Ethan: Wrote ReadME documentation and built out the powerpoint to outline the project's duties</li>
 <li>Julian: Searched through the codebase and given instruction to conceptualize the relationship between the two then taught his team members what he found</li> 
-<li>Patrick:Took what he learned from Julian and Avi to build of the sequence diagrams </li>
+<li>Patrick:Took what he learned from Julian and Avi to build out the sequence diagrams </li>
 <li>Avi:Worked with Julian to understand the future changes and how they would change ReliabilityAnalysis and ReliabilityVisualization</li>
