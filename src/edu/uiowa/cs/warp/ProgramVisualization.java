@@ -3,7 +3,8 @@ package edu.uiowa.cs.warp;
 
 /**
  * Allows the user to generate a GUI to visualize WARP data given by .dsl files.
- * If applicable, the GUI will contain minimum packet reception rate, End-to-End transmission reliability, 
+ * If applicable, the GUI will contain minimum packet reception rate, End-to-End
+ * transmission reliability,
  * and number of channels.
  *
  * @author sgoddard
@@ -11,10 +12,10 @@ package edu.uiowa.cs.warp;
  * 
  */
 public class ProgramVisualization extends VisualizationObject {
-/**
- * Sets the suffix of the file to be only .dsl
- * 
- */
+  /**
+   * Sets the suffix of the file to be only .dsl
+   * 
+   */
   private static final String SOURCE_SUFFIX = ".dsl";
   /**
    * The WARP source code to be used.
@@ -29,33 +30,42 @@ public class ProgramVisualization extends VisualizationObject {
    * Deadlines met flag.
    */
   private Boolean deadlinesMet;
+
   /**
-   * Constructor for new ProgramVisualization. Used WARP file as input changes it to
+   * Constructor for new ProgramVisualization. Used WARP file as input changes it
+   * to
    * a program and gets the schedule and deadlines met.
    * 
    * @param warp
    */
   ProgramVisualization(WarpInterface warp) {
     super(new FileManager(), warp, SOURCE_SUFFIX);
+    System.out.println("Creating program visualization");
     this.program = warp.toProgram();
     this.sourceCode = program.getSchedule();
     this.deadlinesMet = warp.deadlinesMet();
   }
+
   /**
-   * Creates a Java Swing GUI window containing the title, column headers and the visualization data.
+   * Creates a Java Swing GUI window containing the title, column headers and the
+   * visualization data.
    * 
    * @return new GuiVisualization
    */
   @Override
   public GuiVisualization displayVisualization() {
+    System.out.println("Creating gui in program visualization");
     return new GuiVisualization(createTitle(), createColumnHeader(), createVisualizationData());
   }
+
   /**
-   * Creates a header for the GUI visualization, takes the tile from the program's scheduler name. If applicable
-   *  adds number of faults (if greater than 0), minimum packet reception rate, E2E, and number of
-   *  channels.
-   *  
-   *  @return header
+   * Creates a header for the GUI visualization, takes the tile from the program's
+   * scheduler name. If applicable
+   * adds number of faults (if greater than 0), minimum packet reception rate,
+   * E2E, and number of
+   * channels.
+   * 
+   * @return header
    */
   @Override
   protected Description createHeader() {
@@ -64,7 +74,10 @@ public class ProgramVisualization extends VisualizationObject {
     header.add(createTitle());
     header.add(String.format("Scheduler Name: %s\n", program.getSchedulerName()));
 
-    /* The following parameters are output based on a special schedule or the fault model */
+    /*
+     * The following parameters are output based on a special schedule or the fault
+     * model
+     */
     if (program.getNumFaults() > 0) { // only specify when deterministic fault model is assumed
       header.add(String.format("numFaults: %d\n", program.getNumFaults()));
     }
@@ -73,8 +86,10 @@ public class ProgramVisualization extends VisualizationObject {
     header.add(String.format("nChannels: %d\n", program.getNumChannels()));
     return header;
   }
+
   /**
-   * Creates a footer. The message is determined by if all the flows met their deadlines.
+   * Creates a footer. The message is determined by if all the flows met their
+   * deadlines.
    * 
    * @return footer
    */
@@ -91,12 +106,13 @@ public class ProgramVisualization extends VisualizationObject {
     footer.add(String.format("// %s", deadlineMsg));
     return footer;
   }
+
   /**
    * Creates a string array of column headers ordered alphabetically.
    * 
    * @return columnNames
    */
-  
+
   @Override
   protected String[] createColumnHeader() {
     var orderedNodes = program.toWorkLoad().getNodeNamesOrderedAlphabetically();
@@ -108,6 +124,7 @@ public class ProgramVisualization extends VisualizationObject {
     }
     return columnNames;
   }
+
   /**
    * Creates a string matrix using the data collected from visualizationData.
    * 
@@ -129,6 +146,7 @@ public class ProgramVisualization extends VisualizationObject {
     }
     return visualizationData;
   }
+
   /**
    * Creates a title for the GUI using the name from the program.
    * 

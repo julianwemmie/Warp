@@ -83,3 +83,18 @@ We allocated work for this sprint with the following work distribution:
 <li>Julian: Searched through the codebase and given instruction to conceptualize the relationship between the two then taught his team members what he found</li> 
 <li>Patrick:Took what he learned from Julian and Avi to build out the sequence diagrams </li>
 <li>Avi:Worked with Julian to understand the future changes and how they would change ReliabilityAnalysis and ReliabilityVisualization</li>
+
+<h3> Final project - Sprint 2 </h3>
+Sprint 2 begins implementing the plan layed out in Sprint1. This sprint is focused on implementing the changes to the ReliabilityVisualization.java classes. ReliabilityVisualization handles displaying the data in the warp including its ReliabilityTable. Implemented methods are called by VisulaizationImplementation and include:<br>
+<li>createTitle()</li>
+<li>displayVisualization()</li>
+<li>createHeader(String)</li>
+<li>createVisualizationData()</li>
+<br>
+To ensure sustainability of the codebase, we have implemented Javadocs to all methods and classes. We have also implemented test cases to ensure the code is working as intended. We also built UML diagrams to model the relationship between the objects. We also continued preparing for Sprint3 by conceptulizing ReliabilityAnalysis <br><br>
+
+We allocated work for this sprint with the following work distribution:
+<li>Ethan: Wrote JavaDocs and ReadME for this sprint</li>
+<li>Julian: Updated UML and sequence diagrams</li> 
+<li>Patrick: Implemented the methods in Reliability Visualization</li>
+<li>Avi: Continued working on preparing for Sprint 3's implementation of ReliabilityAnalysis</li>
