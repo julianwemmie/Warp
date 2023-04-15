@@ -335,7 +335,21 @@ public class ReliabilityAnalysis {
 	}
 
 	public ReliabilityTable getReliabilities() {
-		ReliabilityTable rt = new ReliabilityTable(6, 10);
+		ProgramSchedule schedule = program.getSchedule();
+		int numrow = schedule.getNumRows();
+		WorkLoad workload = program.workLoad;
+		FlowMap flows = workload.getFlows();
+		String[] flownames = workload.getFlowNames();
+		int numcol = 0;
+		for (int i=0; i < flownames.length;i++) {
+			String flowname = flownames[i];
+			Flow flow = flows.get(flowname);
+			int numNodes = flow.getNodes().size();
+			numcol = numcol + numNodes;
+		}
+		
+		
+		ReliabilityTable rt = new ReliabilityTable(numrow, numcol);
 		return rt;
 		// TODO implement this operation
 	}
