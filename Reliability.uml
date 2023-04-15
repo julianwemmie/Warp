@@ -4,7 +4,8 @@
     <eAnnotations xmi:id="_QdZlYLxiEe2Pj61kfbEkwg" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_QdZlYbxiEe2Pj61kfbEkwg" source="codegen">
         <details xmi:id="_QdZlYrxiEe2Pj61kfbEkwg" key="codegenDirectory" value="/cs2820-spring23/src"/>
-        <details xmi:id="_S_uYMLxiEe2Pj61kfbEkwg" key="AssociatedSourceCode" value="/cs2820-spring23/src/edu/uiowa/cs/warp/AbstractMap.java;2633489473/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Activation.java;3634548837/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Activations.java;3305092594/1;/cs2820-spring23/src/edu/uiowa/cs/warp/BasicPoset.java;3238489715/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ChannelAnalysis.java;1217720653/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ChannelVisualization.java;2873127052/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Channels.java;3701064188/1;/cs2820-spring23/src/edu/uiowa/cs/warp/CodeFragment.java;1941462046/1;/cs2820-spring23/src/edu/uiowa/cs/warp/CombinedActivation.java;3978818808/1;/cs2820-spring23/src/edu/uiowa/cs/warp/CommunicationGraph.java;724670632/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ConnectivityPoset.java;3754377617/1;/cs2820-spring23/src/edu/uiowa/cs/warp/DeadlineComparator.java;492899634/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Description.java;2596849957/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Edge.java;1242144003/1;/cs2820-spring23/src/edu/uiowa/cs/warp/FileManager.java;1791012323/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Flow.java;1068535148/1;/cs2820-spring23/src/edu/uiowa/cs/warp/FlowMap.java;3735737588/1;/cs2820-spring23/src/edu/uiowa/cs/warp/FlowNodeToActivationMap.java;4234899521/1;/cs2820-spring23/src/edu/uiowa/cs/warp/GraphViz.java;1071888484/1;/cs2820-spring23/src/edu/uiowa/cs/warp/GraphVizListener.java;2126849807/1;/cs2820-spring23/src/edu/uiowa/cs/warp/GuiVisualization.java;654882569/1;/cs2820-spring23/src/edu/uiowa/cs/warp/InputGraphFile.java;937049578/1;/cs2820-spring23/src/edu/uiowa/cs/warp/InstructionTimeSlot.java;3408505142/1;/cs2820-spring23/src/edu/uiowa/cs/warp/LatencyAnalysis.java;2064230864/1;/cs2820-spring23/src/edu/uiowa/cs/warp/LatencyVisualization.java;2426998793/1;/cs2820-spring23/src/edu/uiowa/cs/warp/LatestReleaseTimeComparator.java;1106993157/1;/cs2820-spring23/src/edu/uiowa/cs/warp/MaxPhaseComparator.java;1745026972/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Node.java;1243472081/1;/cs2820-spring23/src/edu/uiowa/cs/warp/NodeMap.java;2177811796/1;/cs2820-spring23/src/edu/uiowa/cs/warp/NonPreemptiveSchedule.java;387408079/1;/cs2820-spring23/src/edu/uiowa/cs/warp/NotImplentedVisualization.java;3646556153/1;/cs2820-spring23/src/edu/uiowa/cs/warp/PeriodComparator.java;3057078727/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Poset.java;4263200805/1;/cs2820-spring23/src/edu/uiowa/cs/warp/PreemptiveSchedule.java;3080876127/1;/cs2820-spring23/src/edu/uiowa/cs/warp/PriorityComparator.java;349151360/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ProgramSchedule.java;1770485609/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ProgramVisualization.java;108384050/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ReleaseTimeComparator.java;2065273961/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ReleaseTimeQueue.java;1776494724/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ReliabilityAnalysis.java;3247324826/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ReliabilityParameters.java;1976749484/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ReliabilityRow.java;3195166460/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ReliabilityTable.java;2918095589/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ReliabilityVisualization.java;4166646452/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ReportVisualization.java;2571131140/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Row.java;3413533457/1;/cs2820-spring23/src/edu/uiowa/cs/warp/WorkLoadListener.java;195958787/1;/cs2820-spring23/src/edu/uiowa/cs/warp/SchedulableObjectQueue.java;3263525257/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Schedule.java;3152618411/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ScheduleTable.java;970860350/1;/cs2820-spring23/src/edu/uiowa/cs/warp/ScheduleTime.java;2579980776/1;/cs2820-spring23/src/edu/uiowa/cs/warp/SimulatorInput.java;3699590899/1;/cs2820-spring23/src/edu/uiowa/cs/warp/SortedPeriodQueue.java;3537725478/1;/cs2820-spring23/src/edu/uiowa/cs/warp/SystemAttributes.java;876440066/1;/cs2820-spring23/src/edu/uiowa/cs/warp/SystemFactory.java;4134708055/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Table.java;2577872269/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Visualization.java;2548788944/1;/cs2820-spring23/src/edu/uiowa/cs/warp/VisualizationFactory.java;1134295780/1;/cs2820-spring23/src/edu/uiowa/cs/warp/VisualizationImplementation.java;1783231272/1;/cs2820-spring23/src/edu/uiowa/cs/warp/VisualizationObject.java;1022989847/1;/cs2820-spring23/src/edu/uiowa/cs/warp/WorkLoadDescription.java;3097834434/1;/cs2820-spring23/src/edu/uiowa/cs/warp/WarpSystem.java;1603794739/1;/cs2820-spring23/src/edu/uiowa/cs/warp/WarpInterface.java;2926400465/1;/cs2820-spring23/src/edu/uiowa/cs/warp/WarpPoset.java;4000167019/1;/cs2820-spring23/src/edu/uiowa/cs/warp/WarpDSL.java;1986156920/1;/cs2820-spring23/src/edu/uiowa/cs/warp/WorkLoad.java;3852900159/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Warp.java;2175298915/1;/cs2820-spring23/src/edu/uiowa/cs/warp/SchedulableObject.java;2451757979/1;/cs2820-spring23/src/edu/uiowa/cs/warp/WorkLoadTest.java;250494534/1;/cs2820-spring23/src/edu/uiowa/cs/warp/Program.java;765069261/1;"/>
+        <details xmi:id="_S_uYMLxiEe2Pj61kfbEkwg" key="AssociatedSourceCode" value="/cs2820-spring23/src/edu/uiowa/cs/warp/ReliabilityVisualization.java;3352083564/1;"/>
+        <details xmi:id="_yWVfENu5Ee2RlunxwnVSag" key="codeGenerator" value="com.yattasolutions.codegen.oaw.codeGenerator"/>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_RfFE0LxiEe2Pj61kfbEkwg">
@@ -5809,13 +5810,14 @@ schedule time slot.&#xD;
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_Rla9YLxiEe2Pj61kfbEkwg" name="ReliabilityVisualization">
-              <ownedComment xmi:id="_R_BJI7xiEe2Pj61kfbEkwg">
+              <ownedComment xmi:id="_6li8Ndu5Ee2RlunxwnVSag">
                 <body>ReliabilityVisualization creates the visualizations for&#xD;
-the reliability analysis of the WARP program. &lt;p>&#xD;
-&#xD;
+the reliability analysis of the WARP program.&#xD;
+&lt;p>&#xD;
+ *&#xD;
 CS2820 Spring 2023 Project: Implement this class to create&#xD;
 the file visualization that is requested in Warp.&#xD;
-&#xD;
+ *&#xD;
 @author sgoddard&#xD;
  *</body>
               </ownedComment>
@@ -5832,11 +5834,79 @@ the file visualization that is requested in Warp.&#xD;
               <ownedAttribute xmi:id="_R9na9LxiEe2Pj61kfbEkwg" name="ra" visibility="private" type="_RlU2wLxiEe2Pj61kfbEkwg" association="_R_wI9LxiEe2Pj61kfbEkwg"/>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_R-hZ8rxiEe2Pj61kfbEkwg" name="ReliabilityVisualization" specification="_R6kG8LxiEe2Pj61kfbEkwg">
                 <ownedParameter xmi:id="_R-hZ87xiEe2Pj61kfbEkwg" name="warp" type="_Rm2gwLxiEe2Pj61kfbEkwg"/>
-                <ownedParameter xmi:id="_R-hZ9LxiEe2Pj61kfbEkwg" type="_Rla9YLxiEe2Pj61kfbEkwg" direction="return"/>
+                <ownedParameter xmi:id="_R-hZ9LxiEe2Pj61kfbEkwg" type="_Rla9YLxiEe2Pj61kfbEkwg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>super(new FileManager(), warp, SOURCE_SUFFIX);&#xD;
 		this.warp = warp;&#xD;
 		this.ra = warp.toReliabilityAnalysis();&#xD;
+	</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_6liVINu5Ee2RlunxwnVSag" name="createTitle" specification="_6lYkINu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6liVIdu5Ee2RlunxwnVSag" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>return String.format(OBJECT_NAME + &quot; for graph &quot; + warp.getName() + &quot;\n&quot;);&#xD;
+	</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_6liVItu5Ee2RlunxwnVSag" name="displayVisualization" specification="_6lZLMNu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6liVI9u5Ee2RlunxwnVSag" type="_RkODgLxiEe2Pj61kfbEkwg" direction="return"/>
+                <language>java</language>
+                <body>return new GuiVisualization(createTitle(), createColumnHeader(), createVisualizationData());&#xD;
+	</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_6liVJNu5Ee2RlunxwnVSag" name="createColumnHeader" specification="_6laZUdu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6liVJdu5Ee2RlunxwnVSag" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6liVJtu5Ee2RlunxwnVSag" value="*"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>WorkLoad wl = this.warp.toProgram().toWorkLoad();&#xD;
+		// get the flow names in priority order from the workload&#xD;
+		ArrayList&lt;String> flows = wl.getFlowNamesInPriorityOrder();&#xD;
+		ArrayList&lt;String> output = new ArrayList&lt;String>();&#xD;
+&#xD;
+		// loop through each flow and get each flows nodes from getNodesInFlow and add&#xD;
+		// them to output in the format &quot;flowName:node[i]&quot;&#xD;
+		for (int i = 0; i &lt; flows.size(); i++) {&#xD;
+			String[] nodes = wl.getNodesInFlow(flows.get(i));&#xD;
+			for (int j = 0; j &lt; nodes.length; j++) {&#xD;
+				output.add(flows.get(i) + &quot;:&quot; + nodes[j]);&#xD;
+			}&#xD;
+		}&#xD;
+		// cast output to a string array&#xD;
+		String[] columnNames = output.toArray(new String[0]);&#xD;
+		return columnNames;&#xD;
+	</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_6li8MNu5Ee2RlunxwnVSag" name="createHeader" specification="_6lcOgNu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6li8Mdu5Ee2RlunxwnVSag" type="_RjqC0LxiEe2Pj61kfbEkwg" direction="return"/>
+                <language>java</language>
+                <body>Description header = new Description();&#xD;
+		header.add(createTitle());&#xD;
+		header.add(&quot;M: &quot; + warp.getMinPacketReceptionRate() + &quot;\n&quot;);&#xD;
+		header.add(&quot;E2E: &quot; + warp.getE2e() + &quot;\n&quot;);&#xD;
+		header.add(&quot;nChannels: &quot; + warp.getNumChannels() + &quot;\n&quot;);&#xD;
+		return header;&#xD;
+	</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_6li8Mtu5Ee2RlunxwnVSag" name="createVisualizationData" specification="_6lc1ktu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6li8M9u5Ee2RlunxwnVSag" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6li8NNu5Ee2RlunxwnVSag" value="*"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>ReliabilityTable reliabilities = this.ra.getReliabilities();&#xD;
+		// turn the reliability table into 2d a string array&#xD;
+		String[][] data = new String[reliabilities.getNumRows()][reliabilities.getNumColumns()];&#xD;
+		for (int i = 0; i &lt; reliabilities.getNumRows(); i++) {&#xD;
+			for (int j = 0; j &lt; reliabilities.getNumColumns(); j++) {&#xD;
+				data[i][j] = reliabilities.get(i, j).toString();&#xD;
+			}&#xD;
+		}&#xD;
+		return data;&#xD;
 	</body>
               </ownedBehavior>
               <ownedOperation xmi:id="_R6kG8LxiEe2Pj61kfbEkwg" name="ReliabilityVisualization" visibility="package" method="_R-hZ8rxiEe2Pj61kfbEkwg">
@@ -5845,6 +5915,33 @@ the file visualization that is requested in Warp.&#xD;
                 </eAnnotations>
                 <ownedParameter xmi:id="_R6kG8bxiEe2Pj61kfbEkwg" name="warp" type="_Rm2gwLxiEe2Pj61kfbEkwg"/>
                 <ownedParameter xmi:id="_R6kG9LxiEe2Pj61kfbEkwg" type="_Rla9YLxiEe2Pj61kfbEkwg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6lYkINu5Ee2RlunxwnVSag" name="createTitle" visibility="private" method="_6liVINu5Ee2RlunxwnVSag">
+                <ownedComment xmi:id="_6li8Ntu5Ee2RlunxwnVSag">
+                  <body>createTitle creates the title for the reliability analysis file which is the&#xD;
+	 * object name and the graph name</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_6lgf8Nu5Ee2RlunxwnVSag" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6lZLMNu5Ee2RlunxwnVSag" name="displayVisualization" method="_6liVItu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6lZLMdu5Ee2RlunxwnVSag" type="_RkODgLxiEe2Pj61kfbEkwg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6laZUdu5Ee2RlunxwnVSag" name="createColumnHeader" visibility="protected" method="_6liVJNu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6lbAYNu5Ee2RlunxwnVSag" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6lbAYdu5Ee2RlunxwnVSag" value="*"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6lcOgNu5Ee2RlunxwnVSag" name="createHeader" visibility="protected" method="_6li8MNu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6lcOgdu5Ee2RlunxwnVSag" type="_RjqC0LxiEe2Pj61kfbEkwg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6lc1ktu5Ee2RlunxwnVSag" name="createVisualizationData" visibility="protected" method="_6li8Mtu5Ee2RlunxwnVSag">
+                <ownedParameter xmi:id="_6ldcoNu5Ee2RlunxwnVSag" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6ldcodu5Ee2RlunxwnVSag" value="*"/>
+                </ownedParameter>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_RldZoLxiEe2Pj61kfbEkwg" name="ReportVisualization">
@@ -14747,7 +14844,7 @@ constructors are m = 0.9, e2e = 0.99, and numFaults = 1 when the second construc
   <UMLLabProfile:Reference xmi:id="_SAS7grxiEe2Pj61kfbEkwg" base_Element="_SAS7gLxiEe2Pj61kfbEkwg"/>
   <UMLLabProfile:Reference xmi:id="_SATikLxiEe2Pj61kfbEkwg" base_Element="_SAS7g7xiEe2Pj61kfbEkwg"/>
   <UMLLabProfile:Reference xmi:id="_SAUJorxiEe2Pj61kfbEkwg" base_Element="_SAUJoLxiEe2Pj61kfbEkwg"/>
-  <UMLLabProfile:Patch xmi:id="_S_w0cLxiEe2Pj61kfbEkwg" base_Element="_RjsfELxiEe2Pj61kfbEkwg" patchText="@@ -351,26 +351,24 @@&#xA; um EdgeState&#xA;-()&#xA;  %7B%0D%0A%09%09RELEAS&#xA;" conflicting="false"/>
+  <UMLLabProfile:Patch xmi:id="_S_w0cLxiEe2Pj61kfbEkwg" base_Element="_RjsfELxiEe2Pj61kfbEkwg" patchText="@@ -351,26 +351,24 @@&#xA; um EdgeState&#xA;-()&#xA;  %7B%0D%0A%09%09RELEAS&#xA;" conflicting="true"/>
   <UMLLabProfile:Patch xmi:id="_S_yCkLxiEe2Pj61kfbEkwg" base_Element="_RkXNdLxiEe2Pj61kfbEkwg" patchText="@@ -254,22 +254,25 @@&#xA; MISS%22;%0D%0A&#xA;-public&#xA;+  private&#xA;  static &#xA;" conflicting="false"/>
   <UMLLabProfile:Patch xmi:id="_S_ypoLxiEe2Pj61kfbEkwg" base_Element="_RmAMMLxiEe2Pj61kfbEkwg" patchText="@@ -113,18 +113,16 @@&#xA; eChoices&#xA;-()&#xA;  %7B%0D%0A%09   &#xA;" conflicting="false"/>
   <UMLLabProfile:Patch xmi:id="_S_zQsLxiEe2Pj61kfbEkwg" base_Element="_RmJWILxiEe2Pj61kfbEkwg" patchText="@@ -145,26 +145,24 @@&#xA; ystemChoices&#xA;-()&#xA;  %7B%0D%0A    SOUR&#xA;@@ -284,18 +284,16 @@&#xA; dChoices&#xA;-()&#xA;  %7B%0D%0A    &#xA;" conflicting="false"/>
@@ -14761,4 +14858,22 @@ constructors are m = 0.9, e2e = 0.99, and numFaults = 1 when the second construc
   <UMLLabProfile:LegacyStyledElement xmi:id="_xfFx8MjJEe2Q06zi9Lxc2Q" base_Element="_xfFK4MjJEe2Q06zi9Lxc2Q"/>
   <UMLLabProfile:Reference xmi:id="_xfKqcMjJEe2Q06zi9Lxc2Q" base_Element="_xfKDYMjJEe2Q06zi9Lxc2Q"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_Eyi6hMqJEe2Q06zi9Lxc2Q" base_Element="_Eyi6gsqJEe2Q06zi9Lxc2Q"/>
+  <UMLLabProfile:Annotations xmi:id="_6lZyQNu5Ee2RlunxwnVSag" base_Element="_6lZLMNu5Ee2RlunxwnVSag">
+    <annotations xmi:id="_6laZUNu5Ee2RlunxwnVSag" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Array xmi:id="_6lbAYtu5Ee2RlunxwnVSag" dimensions="1" base_Element="_6laZUdu5Ee2RlunxwnVSag"/>
+  <UMLLabProfile:Annotations xmi:id="_6lbncNu5Ee2RlunxwnVSag" base_Element="_6laZUdu5Ee2RlunxwnVSag">
+    <annotations xmi:id="_6lbncdu5Ee2RlunxwnVSag" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Annotations xmi:id="_6lc1kNu5Ee2RlunxwnVSag" base_Element="_6lcOgNu5Ee2RlunxwnVSag">
+    <annotations xmi:id="_6lc1kdu5Ee2RlunxwnVSag" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Array xmi:id="_6ldcotu5Ee2RlunxwnVSag" dimensions="2" base_Element="_6lc1ktu5Ee2RlunxwnVSag"/>
+  <UMLLabProfile:Annotations xmi:id="_6leDsNu5Ee2RlunxwnVSag" base_Element="_6lc1ktu5Ee2RlunxwnVSag">
+    <annotations xmi:id="_6leDsdu5Ee2RlunxwnVSag" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6leqwNu5Ee2RlunxwnVSag" base_Element="_6lZLMNu5Ee2RlunxwnVSag"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6lfR0Nu5Ee2RlunxwnVSag" base_Element="_6laZUdu5Ee2RlunxwnVSag"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6lf44Nu5Ee2RlunxwnVSag" base_Element="_6lcOgNu5Ee2RlunxwnVSag"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6lf44du5Ee2RlunxwnVSag" base_Element="_6lc1ktu5Ee2RlunxwnVSag"/>
 </xmi:XMI>
