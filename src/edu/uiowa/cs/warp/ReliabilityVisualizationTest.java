@@ -234,7 +234,11 @@ public class ReliabilityVisualizationTest {
 
         assertArrayEquals(expected, columnHeader);
     }
-    
+    /**
+     * testCreateColumnHeader_EmptyFlows() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
+     * The test creates a new ReliabilityVisualization object with EmptyFlows.txt as the input file. Creating a 
+     * ReliabilityVisualization object with empty flows throws an error, which is checked through the test. 
+     */
    @Test
 	void testCreateColumnHeader_EmptyFlows() {
 		
