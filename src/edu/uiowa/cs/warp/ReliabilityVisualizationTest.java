@@ -28,14 +28,14 @@ public class ReliabilityVisualizationTest {
         ReliabilityVisualization viz = new ReliabilityVisualization(warp);
         return viz;
     }
-    /** testCreateHeader1 tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
+    /** testCreateHeader_Example tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
      *  The test creates a new ReliabilityVisualization object by calling the createReliabilityVisualization() 
      *  method with Example.txt as the input file. It then tests the header created with createHeader() and createTitle()
      *  and compares it with the expected output.
      *  
      */
     @Test
-    void testCreateHeader1() {
+    void testCreateHeader_Example() {
         String filename = "example.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -50,14 +50,14 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateHeader2 tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
+     * testCreateHeader_Example1a tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
      *  The test creates a new ReliabilityVisualization object by calling the createReliabilityVisualization() 
      *  method with Example1a.txt as the input file. It then tests the header created with createHeader() and createTitle() 
      *  and compares it with the expected output.
      *  
      */
     @Test
-    void testCreateHeader2() {
+    void testCreateHeader_Example1a() {
         String filename = "example1a.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -72,13 +72,13 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     *  testCreateHeader3 tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
+     *  testCreateHeader_StressTest4 tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
      *  The test creates a new ReliabilityVisualization object by calling the createReliabilityVisualization() 
      *  method with StressTest4.txt as the input file. It then tests the header created with createHeader() and createTitle() 
      *  and compares it with the expected output.
      */
     @Test
-    void testCreateHeader3() {
+    void testCreateHeader_StressTest4() {
         String filename = "StressTest4.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -93,14 +93,14 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateVisualizationData1() tests the createVisualizationData() method of a ReliabilityVisualization object. 
+     * testCreateVisualizationData_Example() tests the createVisualizationData() method of a ReliabilityVisualization object. 
      * The test creates a new ReliabilityVisualization object with Example1.txt as the input file.
      * It then initializes the expected output String array expected to be a 2D array with height rows and width columns,
      * and fills it with the value "0.0".
      *  
      */
     @Test
-    void testCreateVisualizationData1() {
+    void testCreateVisualizationData_Example() {
         String filename = "example.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -118,13 +118,13 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateVisualizationData2() tests the createVisualizationData() method of a ReliabilityVisualization object. 
+     * testCreateVisualizationData_Example1a() tests the createVisualizationData() method of a ReliabilityVisualization object. 
      * The test creates a new ReliabilityVisualization object with Example1a.txt as the input file.
      * It then initializes the expected output String array expected to be a 2D array with height rows and width columns,
      * and fills it with the value "0.0".
      */
     @Test
-    void testCreateVisualizationData2() {
+    void testCreateVisualizationData_Example1a() {
         String filename = "example1a.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -142,13 +142,13 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateVisualizationData3() tests the createVisualizationData() method of a ReliabilityVisualization object. 
+     * testCreateVisualizationData_StressTest4() tests the createVisualizationData() method of a ReliabilityVisualization object. 
      * The test creates a new ReliabilityVisualization object with StressTest4.txt as the input file.
      * It then initializes the expected output String array expected to be a 2D array with height rows and width columns,
      * and fills it with the value "0.0".
      */
     @Test
-    void testCreateVisualizationData3() {
+    void testCreateVisualizationData_StressTest4() {
         String filename = "StressTest4.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -166,13 +166,13 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateColumnHeader1() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
+     * testCreateColumnHeader_Example() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
      * The test creates a new ReliabilityVisualization object with Example.txt as the input file.
      * The test creates a column header using the createColumnHeader() method then compares it to the desired output
      * which is and array of the strings "Flow:Node" for all the flows and nodes in the file.
      */
     @Test
-    void testCreateColumnHeader1() {
+    void testCreateColumnHeader_Example() {
         String filename = "example.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -186,13 +186,13 @@ public class ReliabilityVisualizationTest {
         assertArrayEquals(expected, columnHeader);
     }
     /**
-     * testCreateColumnHeader2() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
+     * testCreateColumnHeader_Example1a() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
      * The test creates a new ReliabilityVisualization object with Example1a.txt as the input file.
      * The test creates a column header using the createColumnHeader() method then compares it to the desired output
      * which is and array of the strings "Flow:Node" for all the flows and nodes in the file.
      */
     @Test
-    void testCreateColumnHeader2() {
+    void testCreateColumnHeader_Example1a() {
         String filename = "example1a.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -207,13 +207,13 @@ public class ReliabilityVisualizationTest {
 
     }
     /**
-     * testCreateColumnHeader3() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
+     * testCreateColumnHeader_StressTest4() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
      * The test creates a new ReliabilityVisualization object with StressTest4.txt as the input file.
      * The test creates a column header using the createColumnHeader() method then compares it to the desired output
      * which is and array of the strings "Flow:Node" for all the flows and nodes in the file.
      */
     @Test
-    void testCreateColumnHeader3() {
+    void testCreateColumnHeader_StressTest4() {
         String filename = "StressTest4.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -234,5 +234,29 @@ public class ReliabilityVisualizationTest {
 
         assertArrayEquals(expected, columnHeader);
     }
+    
+   @Test
+	void testCreateColumnHeader_EmptyFlows() {
+		
+		String filename = "EmptyFlows.txt";
+		Double m = 0.9;
+		Double e2e = 0.99;
+		int numChannels = 16;
+		
+		IndexOutOfBoundsException thrown = assertThrows(
+				IndexOutOfBoundsException.class,
+		           () -> createReliabilityVisualization(filename, m, e2e, numChannels)
+		    );
+		
+	    String expectedMessage = "Index -1 out of bounds for length 0";
+	    String actualMessage = thrown.getMessage();
 
+	    assertTrue(actualMessage.contains(expectedMessage));
+	}
+    
 }
+  
+
+    
+
+
