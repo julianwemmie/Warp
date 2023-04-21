@@ -1,0 +1,157 @@
+title Sprint 2 Sequence Diagram
+
+
+participant User
+participant Warp
+participant Visualization Factory
+participant Visualization Implimentation
+participant Reliability Visualization
+participant GUIVisualization
+participant Warp System
+participant Reliability Analysis
+participant Program Schedule
+participant WorkLoad
+participant Reliability Row
+participant Reliability Table
+
+User ->Warp : Call Warp
+
+activate Warp
+
+
+ref over Warp,Visualization Factory:Call Visualization() if -ra flag is used 
+
+activate Visualization Factory
+
+Visualization Factory ->Visualization Implimentation : createProgramVisualization()
+
+activate Visualization Implimentation
+
+Visualization Implimentation ->Reliability Visualization: createVisualization()
+
+activate Reliability Visualization
+
+
+ref over Reliability Visualization,GUIVisualization :Call GUIVisualization if -GUI flag is present\n
+Reliability Visualization ->Warp System: toProgram()
+
+activate Warp System
+Warp System -> Program: toWorkload()
+
+Program -->Warp System: WorkLoad
+
+Warp System -->Reliability Visualization: WorkLoad
+
+deactivate Warp System
+
+Reliability Visualization -> WorkLoad: GetFlowNamesInPriorityOrder()
+
+activate WorkLoad
+
+WorkLoad -->Reliability Visualization: Flow names in priority Order
+
+deactivate WorkLoad
+
+loop for each flow:
+Reliability Visualization -> WorkLoad: getNodesInFlow()
+
+activate WorkLoad
+
+WorkLoad -->Reliability Visualization:Nodes In Flow
+deactivate WorkLoad
+
+end
+Reliability Visualization ->Warp System: toReliabilityAnalysis()
+
+
+
+
+activate Warp System
+
+Warp System ->Reliability Analysis: ReliabilityAnalysis()
+
+deactivate Warp System
+
+activate Reliability Analysis
+
+Reliability Analysis ->Program Schedule: scheduleBuilt()
+
+activate Program Schedule
+
+Reliability Analysis <--Program Schedule:Program Schedule
+
+deactivate Program Schedule
+
+Reliability Analysis ->WorkLoad: toWorkload()
+
+activate WorkLoad
+
+Reliability Analysis <--WorkLoad: Flow Names and Node Names
+
+deactivate WorkLoad
+
+Reliability Analysis ->Reliability Row: ReliabilityRow()
+
+activate Reliability Row
+
+Reliability Analysis <--Reliability Row: ReliabilityRow
+
+deactivate Reliability Row
+
+Reliability Analysis ->Reliability Table: getReliabilities()
+
+activate Reliability Table
+
+Reliability Analysis <--Reliability Table: Reliability Table
+
+deactivate Reliability Table
+
+Reliability Analysis -->Reliability Visualization: Reliability Analysis
+
+
+deactivate Reliability Analysis
+
+Visualization Implimentation ->Reliability Visualization: visualization()
+
+
+Reliability Visualization -->Visualization Implimentation: Reliability Visualization
+
+Visualization Implimentation ->Reliability Visualization: fileVisualization()
+
+Reliability Visualization -->Visualization Implimentation: fileContent
+
+Visualization Implimentation ->Reliability Visualization: createFile()
+
+Reliability Visualization -->Visualization Implimentation: fileName
+
+
+deactivate Reliability Visualization
+
+
+Visualization Implimentation -->Visualization Factory: Program Visualization
+
+deactivate Visualization Implimentation
+
+Visualization Factory -->Warp: viz
+
+deactivate Visualization Factory
+
+Warp ->Visualization Implimentation: toFile()
+
+deactivate Warp
+
+activate Visualization Implimentation
+
+Visualization Implimentation ->FileManager: writeFile()
+
+deactivate Visualization Implimentation
+
+activate FileManager
+
+FileManager -->User: Outputs *.ra file
+
+deactivate FileManager
+
+
+
+
