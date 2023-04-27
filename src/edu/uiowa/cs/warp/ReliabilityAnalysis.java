@@ -131,14 +131,8 @@ public class ReliabilityAnalysis {
 		// minLinkReliablityNeded is the minimum reliability needed per link in a flow
 		// to hit E2E
 		// reliability for the flow
-		Double minLinkReliablityNeded = Math.max(e2e, Math.pow(e2e, (1.0 / (double) nHops))); // use max
-																								// to
-																								// handle
-																								// rounding
-																								// error
-																								// when
-																								// e2e ==
-																								// 1.0
+		Double minLinkReliablityNeded = Math.max(e2e, Math.pow(e2e, (1.0 / (double) nHops))); 
+		// use max to handle rounding error when e2e == 1.0
 		// Now compute reliability of packet reaching each node in the given time slot
 		// Start with a 2-D reliability window that is a 2-D matrix of no size
 		// each row is a time slot, stating at time 0
@@ -167,12 +161,7 @@ public class ReliabilityAnalysis {
 		// back in the matrix
 		currentReliabilityRow.set(0, 1.0); // initialize (i.e., P(packet@FlowSrc) = 1
 		Double e2eReliabilityState = currentReliabilityRow.get(nNodesInFlow - 1); // the analysis will end
-		// when the 2e2
-		// reliability metrix is
-		// met, initially the
-		// state is not met and
-		// will be 0 with this
-		// statement
+		// when the 2e2 reliability metrix is met, initially the state is not met and will be 0 with this statement
 		var timeSlot = 0; // start time at 0
 		while (e2eReliabilityState < e2e) { // change to while and increment increment timeSlot becuase
 											// we don't know how long this schedule window will last
@@ -182,45 +171,25 @@ public class ReliabilityAnalysis {
 				currentReliabilityRow.add(newReliabilityRow.get(i));
 			}
 
-			// be
-			// reliabilityWindow[timeSlot]
-			// if
-			// working
-			// through
-			// a
-			// schedule
+			// be reliabilityWindow[timeSlot] if working through a schedule
 			// Now use each flow:src->sink to update reliability computations
 			// this is the update formula for the state probabilities
 			// nextState = (1 - M) * prevState + M*NextHighestFlowState
 			// use MinLQ for M in above equation
 			// NewSinkNodeState = (1-M)*PrevSnkNodeState + M*PrevSrcNodeState
 
-			for (int nodeIndex = 0; nodeIndex < (nNodesInFlow - 1); nodeIndex++) { // loop through each
-																					// node in the flow and
-																					// update the sates for
-																					// each link (i.e.,
-																					// sink->src pair)
+			for (int nodeIndex = 0; nodeIndex < (nNodesInFlow - 1); nodeIndex++) { 
+				// loop through each node in the flow and update the sates for each link (i.e., sink->src pair)
 				var flowSrcNodeindex = nodeIndex;
 				var flowSnkNodeindex = nodeIndex + 1;
 				var prevSrcNodeState = prevReliabilityRow.get(flowSrcNodeindex);
 				var prevSnkNodeState = prevReliabilityRow.get(flowSnkNodeindex);
 				Double nextSnkState;
-				if ((prevSnkNodeState < minLinkReliablityNeded) && prevSrcNodeState > 0) { // do a push
-																							// until PrevSnk
-																							// state > e2e to
-																							// ensure next
-																							// node reaches
-																							// target E2E BUT
-																							// skip if no
-																							// chance of
-																							// success (i.e.,
-																							// source doesn't
-																							// have packet)
-					nextSnkState = ((1.0 - M) * prevSnkNodeState) + (M * prevSrcNodeState); // need to
-																							// continue
-																							// attempting to
-																							// Tx, so update
-																							// current state
+				if ((prevSnkNodeState < minLinkReliablityNeded) && prevSrcNodeState > 0) { 
+					// do a push until PrevSnk state > e2e to ensure next node reaches target E2E BUT skip if no
+					// chance of success (i.e., source doesn't have packet)
+					nextSnkState = ((1.0 - M) * prevSnkNodeState) + (M * prevSrcNodeState); 
+					// need to continue attempting to Tx, so update current state
 					nPushes.set(nodeIndex, nPushes.get(nodeIndex) + 1); // increment the number of pushes for for this
 																		// node to snk node
 				} else {
@@ -229,37 +198,10 @@ public class ReliabilityAnalysis {
 				}
 
 				if (currentReliabilityRow.get(flowSrcNodeindex) < prevReliabilityRow.get(flowSrcNodeindex)) { // probabilities
-					// are
-					// non-decreasing
-					// so
-					// update
-					// if
-					// we
-					// were
-					// higher
-					// by
-					// carring
-					// old
-					// value
-					// forward
+					// are non-decreasing so update if we were higher by carring old value forward
 					currentReliabilityRow.set(flowSrcNodeindex, prevReliabilityRow.get(flowSrcNodeindex)); // carry
-					// forward
-					// the
-					// previous
-					// state
-					// for the
-					// src
-					// node,
-					// which
-					// may get
-					// over
-					// written
-					// later
-					// by
-					// another
-					// instruction
-					// in this
-					// slot
+					// forward the previous state for the src node, which 
+					// may get over written later by another instruction in this slot
 				}
 				currentReliabilityRow.set(flowSnkNodeindex, nextSnkState);
 			}
