@@ -3,7 +3,10 @@ package edu.uiowa.cs.warp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Vector;
+
+import edu.uiowa.cs.warp.WarpDSL.InstructionParameters;
 
 /**
  * ReliabilityAnalysis analyzes the end-to-end reliability of messages
@@ -75,6 +78,29 @@ public class ReliabilityAnalysis {
 	 * Stores which constructor was used to create the reliability analysis.
 	 */
 	private String constructorUsed = null;
+	
+	private ReliabilityTable reliabilityTable = null;
+	
+	private HashMap<String, ReliabilityNode> nodeMap = new HashMap<String, ReliabilityNode>();
+	
+	class ReliabilityNode {
+		String nodeName;
+		String flowName;
+		Boolean isSourceNode;
+		Integer columnIndex;
+		Integer phase;
+		Double prevR = 0.0;
+
+		ReliabilityNode(String nodeName, String flowName, Boolean isSourceNode, 
+				Integer columnIndex, Integer phase){
+			this.nodeName = nodeName;
+			this.flowName = flowName;
+			this.isSourceNode = isSourceNode;
+			this.columnIndex = columnIndex;
+			this.phase = phase;
+		}
+	}
+	
 
 	/**
 	 * Creates a ReliabilityAnalysis object and sets the current constructor used to
@@ -99,7 +125,6 @@ public class ReliabilityAnalysis {
 	public ReliabilityAnalysis(Integer numFaults) {
 		this.numFaults = numFaults;
 		this.constructorUsed = NUM_FAULTS_CONSTRUCTOR;
-
 	}
 
 	/**
@@ -273,26 +298,132 @@ public class ReliabilityAnalysis {
 
 	public ReliabilityAnalysis(Program program) {
 		this.program = program;
+		buildReliabilityTable();
 
 	}
-
-	public ReliabilityTable getReliabilities() {
-		ProgramSchedule schedule = program.getSchedule();
-		int numrow = schedule.getNumRows();
-		WorkLoad workload = program.workLoad;
-		FlowMap flows = workload.getFlows();
-		String[] flownames = workload.getFlowNames();
-		int numcol = 0;
-		for (int i=0; i < flownames.length;i++) {
-			String flowname = flownames[i];
-			Flow flow = flows.get(flowname);
-			int numNodes = flow.getNodes().size();
-			numcol = numcol + numNodes;
+	
+	public void setReliabilityHeaderRow(ArrayList<String> reliabiltyHeaderRow) {
+		
+	}
+	
+	private void buildReliabilityTable() {
+		WorkLoad wl = program.toWorkLoad();
+		ArrayList<String> flowNames = wl.getFlowNamesInPriorityOrder();
+		FlowMap flows = wl.getFlows();
+		ArrayList<ReliabilityNode> reliabilityNodes = new ArrayList<ReliabilityNode>();
+		int numCols = 0;
+		for (String flowName : flowNames) {
+			Flow flow = flows.get(flowName);
+			Integer flowPhase = flow.getPhase();
+			ArrayList<Node> nodes = flow.getNodes();
+			for (int i = 0; i<nodes.size(); i++) {
+				String nodeName = nodes.get(i).toString();
+				ReliabilityNode reliabilityNode;
+				if (i == 0) {
+					reliabilityNode = new ReliabilityNode(nodeName, flowName, true, i, flowPhase);
+				}
+				else {
+					reliabilityNode = new ReliabilityNode(nodeName, flowName, false, i, flowPhase);
+				}
+				reliabilityNodes.add(reliabilityNode);
+				numCols++;
+				
+				nodeMap.put(flowName + ":" + nodeName, reliabilityNode);
+				
+			}
 		}
 		
+		int numRows = program.getSchedule().getNumRows();
+		reliabilityTable = new ReliabilityTable(numRows, numCols);
 		
-		ReliabilityTable rt = new ReliabilityTable(numrow, numcol);
-		return rt;
+		// set source nodes to 1.0
+		for (int i = 0; i<reliabilityNodes.size(); i++) {
+			ReliabilityNode rNode = reliabilityNodes.get(i);
+			if (rNode.isSourceNode == true) {
+				for (int j = 0; j<numRows; j++) {
+					reliabilityTable.get(j).set(i, 1.0);
+				}
+			}
+		}
+		WarpDSL dsl = new WarpDSL();
+		ProgramSchedule schedule = program.getSchedule();
+		for (int i = 0; i<numRows; i++) {
+			InstructionTimeSlot timeSlot = schedule.get(i);
+			for (String instruction : timeSlot) {
+				InstructionParameters parameters = dsl.getInstructionParameters(instruction).get(0);
+				String flow = parameters.getFlow();
+				if (flow.equals("unused")) {
+					// TODO: copy previous value
+					continue;
+				}
+				String src = parameters.getSrc();
+				String snk = parameters.getSnk();
+				
+				ReliabilityNode rNodeSrc = nodeMap.get(flow + ":" + src);
+				ReliabilityNode rNodeSnk = nodeMap.get(flow + ":" + snk);
+				
+				int src_index = reliabilityNodes.indexOf(rNodeSrc);
+				int snk_index = reliabilityNodes.indexOf(rNodeSnk);
+				
+				Double src_r = reliabilityTable.get(src_index, i);
+				Double snk_r = reliabilityTable.get(snk_index, i);
+				
+				Double next_r = calcNextNodeReliability(snk_r, src_r);
+				rNodeSnk.prevR = next_r;
+				for (int k = i; k < numRows; k++) {
+					reliabilityTable.get(k).set(snk_index, next_r);
+				}
+			}
+		}
+		
+;	}
+	
+	private Double calcNextNodeReliability(Double prevSnk, Double prevSrc) {
+		
+		if (prevSnk == null || prevSrc == null) {
+			return 0.0;
+		}
+		
+		double M = program.getMinPacketReceptionRate();
+		return (1-M) * prevSnk + M * prevSrc;
+	}
+	
+	private void carryForwardReliabilities(Integer timeSlot, NodeMap
+			nodeMap, ReliabilityTable reliabilities) {
+		
+	}
+
+	private void printRaTable(ReliabilityTable reliabilities, Integer timeSlot) {
+		
+	}
+	
+	private void setReliabilities(ReliabilityTable rm) {
+		
+	}
+	
+	private void setInitialStateForReleasedFlows(NodeMap nodeMap,
+			ReliabilityTable reliabilities) {
+		
+	}
+	
+	public ReliabilityTable getReliabilities() {
+//		ProgramSchedule schedule = program.getSchedule();
+//		int numrow = schedule.getNumRows();
+//		WorkLoad workload = program.workLoad;
+//		FlowMap flows = workload.getFlows();
+//		String[] flownames = workload.getFlowNames();
+//		int numcol = 0;
+//		for (int i=0; i < flownames.length;i++) {
+//			String flowname = flownames[i];
+//			Flow flow = flows.get(flowname);
+//			int numNodes = flow.getNodes().size();
+//			numcol = numcol + numNodes;
+//		}
+//		
+//		
+//		ReliabilityTable rt = new ReliabilityTable(numrow, numcol);
+//		return rt;
+		return this.reliabilityTable;
 		// TODO implement this operation
 	}
 
