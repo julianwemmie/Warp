@@ -88,16 +88,16 @@ public class ReliabilityAnalysis {
 		String flowName;
 		Boolean isSourceNode;
 		Integer columnIndex;
-		Integer phase;
+		Integer period;
 		Double prevR = 0.0;
 
 		ReliabilityNode(String nodeName, String flowName, Boolean isSourceNode, 
-				Integer columnIndex, Integer phase){
+				Integer columnIndex, Integer period){
 			this.nodeName = nodeName;
 			this.flowName = flowName;
 			this.isSourceNode = isSourceNode;
 			this.columnIndex = columnIndex;
-			this.phase = phase;
+			this.period = period;
 		}
 	}
 	
@@ -314,16 +314,17 @@ public class ReliabilityAnalysis {
 		int numCols = 0;
 		for (String flowName : flowNames) {
 			Flow flow = flows.get(flowName);
-			Integer flowPhase = flow.getPhase();
+			Integer flowPeriod = flow.getPeriod();
 			ArrayList<Node> nodes = flow.getNodes();
 			for (int i = 0; i<nodes.size(); i++) {
 				String nodeName = nodes.get(i).toString();
 				ReliabilityNode reliabilityNode;
 				if (i == 0) {
-					reliabilityNode = new ReliabilityNode(nodeName, flowName, true, i, flowPhase);
+					reliabilityNode = new ReliabilityNode(nodeName, flowName, true, i, flowPeriod);
+					reliabilityNode.prevR = 1.0;
 				}
 				else {
-					reliabilityNode = new ReliabilityNode(nodeName, flowName, false, i, flowPhase);
+					reliabilityNode = new ReliabilityNode(nodeName, flowName, false, i, flowPeriod);
 				}
 				reliabilityNodes.add(reliabilityNode);
 				numCols++;
@@ -365,18 +366,45 @@ public class ReliabilityAnalysis {
 				int src_index = reliabilityNodes.indexOf(rNodeSrc);
 				int snk_index = reliabilityNodes.indexOf(rNodeSnk);
 				
-				Double src_r = reliabilityTable.get(src_index, i);
-				Double snk_r = reliabilityTable.get(snk_index, i);
+				Double src_r = reliabilityTable.get(i, src_index);
+				Double snk_r = reliabilityTable.get(i, snk_index);
 				
-				Double next_r = calcNextNodeReliability(snk_r, src_r);
+				// check for period, clear out if new period
+				if (i % rNodeSrc.period == 0 && rNodeSrc.isSourceNode == true) {
+					Flow flowToClear = flows.get(flow);
+					int flowToClear_len = flowToClear.getNodes().size();
+					for (int index = 0; index < flowToClear_len; index++) {
+						if (index == 0) {
+							continue;
+						}
+						for (int k = i; k < numRows; k++) {
+							reliabilityTable.get(k).set(src_index + index, 0.0);
+						}
+						reliabilityNodes.get(src_index + index).prevR = 0.0;
+					}
+				}
+				
+				// src node reliability calculation
+				// TODO: this part does not work. is meant to fix src calc.
+				if (rNodeSrc.isSourceNode == false && rNodeSrc.prevR <= e2e) {
+					Double src_r_prev = reliabilityNodes.get(src_index - 1).prevR;
+					Double next_r = calcNextNodeReliability(src_r, src_r_prev);
+					rNodeSrc.prevR = next_r;
+					for (int k = i; k < numRows; k++) {
+						reliabilityTable.get(k).set(src_index, next_r);
+					}
+				}
+				
+				
+				Double next_r = calcNextNodeReliability(rNodeSnk.prevR, src_r);
 				rNodeSnk.prevR = next_r;
+				// copy values down
 				for (int k = i; k < numRows; k++) {
 					reliabilityTable.get(k).set(snk_index, next_r);
 				}
 			}
 		}
-		
-;	}
+	}
 	
 	private Double calcNextNodeReliability(Double prevSnk, Double prevSrc) {
 		
