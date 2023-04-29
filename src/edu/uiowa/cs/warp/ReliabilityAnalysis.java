@@ -245,9 +245,7 @@ public class ReliabilityAnalysis {
 		var size = reliabilityWindow.size();
 		nPushes.set(nNodesInFlow, size); // The total (worst-case) cost to transmit E2E in isolation with
 											// specified reliability target is the number of rows in the
-		for (Object row : reliabilityWindow.toArray()) {
-			System.out.println(row);
-		} // reliabilityWindow
+
 		return nPushes;
 	}
 
@@ -302,16 +300,14 @@ public class ReliabilityAnalysis {
 
 	}
 	
-	public void setReliabilityHeaderRow(ArrayList<String> reliabiltyHeaderRow) {
-		
-	}
-	
 	private void buildReliabilityTable() {
 		WorkLoad wl = program.toWorkLoad();
 		ArrayList<String> flowNames = wl.getFlowNamesInPriorityOrder();
 		FlowMap flows = wl.getFlows();
 		ArrayList<ReliabilityNode> reliabilityNodes = new ArrayList<ReliabilityNode>();
 		int numCols = 0;
+		
+		// create hashmap of reliabiltyNodes to quickly look up period, parent flow, etc...
 		for (String flowName : flowNames) {
 			Flow flow = flows.get(flowName);
 			Integer flowPeriod = flow.getPeriod();
@@ -346,92 +342,76 @@ public class ReliabilityAnalysis {
 				}
 			}
 		}
+		
+		// calculate appropriate reliabilities
 		WarpDSL dsl = new WarpDSL();
 		ProgramSchedule schedule = program.getSchedule();
 		for (int i = 0; i<numRows; i++) {
 			InstructionTimeSlot timeSlot = schedule.get(i);
 			for (String instruction : timeSlot) {
-				InstructionParameters parameters = dsl.getInstructionParameters(instruction).get(0);
-				String flow = parameters.getFlow();
-				if (flow.equals("unused")) {
-					// TODO: copy previous value
-					continue;
+				
+				// parse instructions for each timeslot
+				ArrayList<InstructionParameters> instructionParameters = dsl.getInstructionParameters(instruction);
+				
+				// calculate reliability for each instruction in a timeslot
+				for (InstructionParameters instructionParameter : instructionParameters) {
+					fillInReliabilities(instructionParameter, reliabilityNodes, i, numRows);
 				}
-				String src = parameters.getSrc();
-				String snk = parameters.getSnk();
+			}
+			
+			// at the end of each row, adjust prevR for all reliability node, and check for new period
+			for (int n = 0; n < reliabilityNodes.size(); n++) {
+				Double r = reliabilityTable.get(i, n);
+				ReliabilityNode reliabilityNode = reliabilityNodes.get(n);
+				reliabilityNode.prevR = r;
 				
-				ReliabilityNode rNodeSrc = nodeMap.get(flow + ":" + src);
-				ReliabilityNode rNodeSnk = nodeMap.get(flow + ":" + snk);
-				
-				int src_index = reliabilityNodes.indexOf(rNodeSrc);
-				int snk_index = reliabilityNodes.indexOf(rNodeSnk);
-				
-				Double src_r = reliabilityTable.get(i, src_index);
-				Double snk_r = reliabilityTable.get(i, snk_index);
-				
-				// check for period, clear out if new period
-				if (i % rNodeSrc.period == 0 && rNodeSrc.isSourceNode == true) {
-					Flow flowToClear = flows.get(flow);
-					int flowToClear_len = flowToClear.getNodes().size();
-					for (int index = 0; index < flowToClear_len; index++) {
-						if (index == 0) {
-							continue;
-						}
-						for (int k = i; k < numRows; k++) {
-							reliabilityTable.get(k).set(src_index + index, 0.0);
-						}
-						reliabilityNodes.get(src_index + index).prevR = 0.0;
+				// if new period, reset prev reliability value (prevR)
+				int period = reliabilityNode.period;
+				if ((i + 1) % period == 0) {
+					
+					// change prevR depending on if it's a source node
+					if (reliabilityNode.isSourceNode == true) {
+						reliabilityNode.prevR = 1.0;
 					}
-				}
-				
-				// src node reliability calculation
-				// TODO: this part does not work. is meant to fix src calc.
-				if (rNodeSrc.isSourceNode == false && rNodeSrc.prevR <= e2e) {
-					Double src_r_prev = reliabilityNodes.get(src_index - 1).prevR;
-					Double next_r = calcNextNodeReliability(src_r, src_r_prev);
-					rNodeSrc.prevR = next_r;
-					for (int k = i; k < numRows; k++) {
-						reliabilityTable.get(k).set(src_index, next_r);
+					else {
+						reliabilityNode.prevR = 0.0;
 					}
-				}
-				
-				
-				Double next_r = calcNextNodeReliability(rNodeSnk.prevR, src_r);
-				rNodeSnk.prevR = next_r;
-				// copy values down
-				for (int k = i; k < numRows; k++) {
-					reliabilityTable.get(k).set(snk_index, next_r);
 				}
 			}
 		}
 	}
 	
-	private Double calcNextNodeReliability(Double prevSnk, Double prevSrc) {
+	private void fillInReliabilities(InstructionParameters instructionParameter, 
+			ArrayList<ReliabilityNode> reliabilityNodes, int row_index, int numRows) {
+				
+		String flowName = instructionParameter.getFlow();
+		String srcName = instructionParameter.getSrc();
+		String snkName = instructionParameter.getSnk();
 		
-		if (prevSnk == null || prevSrc == null) {
-			return 0.0;
+		if (flowName.equals("unused")) {
+			return;
 		}
 		
+		ReliabilityNode rNodeSrc = nodeMap.get(flowName + ":" + srcName);
+		ReliabilityNode rNodeSnk = nodeMap.get(flowName + ":" + snkName);
+		
+		int src_index = reliabilityNodes.indexOf(rNodeSrc);
+		int snk_index = reliabilityNodes.indexOf(rNodeSnk);
+		
+		double nextR = calcNextNodeReliability(rNodeSrc.prevR, rNodeSnk.prevR);
+		
+		// fill in rest of table up until new period
+		int rowsToFill = rNodeSnk.period - (row_index % rNodeSnk.period);
+		for (int k = 0; k < rowsToFill; k++) {
+			reliabilityTable.get(k + row_index).set(snk_index, nextR);
+		}
+		
+		return;
+	}
+	
+	private Double calcNextNodeReliability(Double prevSrc, Double prevSnk) {		
 		double M = program.getMinPacketReceptionRate();
 		return (1-M) * prevSnk + M * prevSrc;
-	}
-	
-	private void carryForwardReliabilities(Integer timeSlot, NodeMap
-			nodeMap, ReliabilityTable reliabilities) {
-		
-	}
-
-	private void printRaTable(ReliabilityTable reliabilities, Integer timeSlot) {
-		
-	}
-	
-	private void setReliabilities(ReliabilityTable rm) {
-		
-	}
-	
-	private void setInitialStateForReleasedFlows(NodeMap nodeMap,
-			ReliabilityTable reliabilities) {
-		
 	}
 	
 	public ReliabilityTable getReliabilities() {
