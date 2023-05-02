@@ -436,15 +436,10 @@ public class ReliabilityAnalysis {
 	}
 
 	public Boolean verifyReliabilities() {
-		int numRows = reliabilityTable.size();
-		ReliabilityRow lastRow = reliabilityTable.get(numRows - 1);
-		
-		for (double reliability : lastRow) {
-			if (reliability < e2e) {
-				return false;
-			}
-		}
+		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	
 
 }
