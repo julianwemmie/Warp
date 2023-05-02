@@ -302,7 +302,7 @@ public class ReliabilityAnalysis {
 	
 	private void buildReliabilityTable() {
 		WorkLoad wl = program.toWorkLoad();
-		ArrayList<String> flowNames = wl.getFlowNamesInPriorityOrder();
+		ArrayList<String> flowNames = wl.	();
 		FlowMap flows = wl.getFlows();
 		ArrayList<ReliabilityNode> reliabilityNodes = new ArrayList<ReliabilityNode>();
 		int numCols = 0;
