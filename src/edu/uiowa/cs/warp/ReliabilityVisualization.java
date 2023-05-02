@@ -1,6 +1,5 @@
 package edu.uiowa.cs.warp;
 
-import java.util.Arrays;
 import java.util.ArrayList;
 
 /**
@@ -44,7 +43,8 @@ public class ReliabilityVisualization extends VisualizationObject {
 	 * object name and the graph name
 	 */
 	private String createTitle() {
-		return String.format(OBJECT_NAME + " for graph " + warp.getName() + " created with the following parameters:" + "\n");
+		return String.format(
+				OBJECT_NAME + " for graph " + warp.getName() + " created with the following parameters:" + "\n");
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class ReliabilityVisualization extends VisualizationObject {
 	protected Description createHeader() {
 		Description header = new Description();
 		header.add(createTitle());
-		header.add("Scheduler Name: " + warp.getSchedulerName()+"\n");
+		header.add("Scheduler Name: " + warp.getSchedulerName() + "\n");
 		header.add("M: " + warp.getMinPacketReceptionRate() + "\n");
 		header.add("E2E: " + warp.getE2e() + "\n");
 		header.add("nChannels: " + warp.getNumChannels() + "\n");
