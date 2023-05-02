@@ -6,9 +6,29 @@ import org.junit.jupiter.api.Test;
 
 class ReliabilityAnalysisTest {
 
+	private ReliabilityAnalysis createReliabilityAnalysis() {
+		
+	}
 	@Test
-	void test() {
+	void testBuildReliabiltyTable() {
 		fail("Not yet implemented");
 	}
 
+
+ 	@Test
+ 	void testReliabilityNode() {
+ 		
+ 	}
+ 	 
+ 		
+ 	
+ 	@Test
+ 	void testGetReliabilities() {
+ 		
+ 	}
+ 	
+ 	@Test
+ 	void testVerifyReliabilities() {
+ 		
+ 	}
 }
