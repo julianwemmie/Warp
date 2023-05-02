@@ -302,7 +302,7 @@ public class ReliabilityAnalysis {
 	
 	private void buildReliabilityTable() {
 		WorkLoad wl = program.toWorkLoad();
-		ArrayList<String> flowNames = wl.	();
+		ArrayList<String> flowNames = wl.getFlowNamesInPriorityOrder();
 		FlowMap flows = wl.getFlows();
 		ArrayList<ReliabilityNode> reliabilityNodes = new ArrayList<ReliabilityNode>();
 		int numCols = 0;
@@ -436,10 +436,15 @@ public class ReliabilityAnalysis {
 	}
 
 	public Boolean verifyReliabilities() {
-		// TODO Auto-generated method stub
+		int numRows = reliabilityTable.size();
+		ReliabilityRow lastRow = reliabilityTable.get(numRows - 1);
+		
+		for (double reliability : lastRow) {
+			if (reliability < e2e) {
+				return false;
+			}
+		}
 		return true;
 	}
-	
-	
 
 }
