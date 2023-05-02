@@ -70,69 +70,69 @@ We allocated work for this sprint with the following work distribution:
 ##### Final project - Sprint 2
 We allocated work for this sprint with the following work distribution:
 * Write three JUnits Tests for the followings methods and test edges cases: Ethan
-* createTitle()<br>
-* displayVisualization()<br>
-* createHeader()<br>
-* createVisualizationData()<br>
+	* createTitle()<br>
+	* displayVisualization()<br>
+	* createHeader()<br>
+	* createVisualizationData()<br>
 * Updated the UML Diagram to reflect the changes in the following methods in Reliability Visualization: Julian
-* createTitle()<br>
-* displayVisualization()<br>
-* createHeader()<br>
-* createVisualizationData()<br>
+	* createTitle()<br>
+	* displayVisualization()<br>
+	* createHeader()<br>
+	* createVisualizationData()<br>
 * Write Java docs and create the documentation for the following methods in Reliability Visualization: Julian
-* createTitle()<br>
-* displayVisualization()<br>
-* createHeader()<br>
-* createVisualizationData()<br>
+	* createTitle()<br>
+	* displayVisualization()<br>
+	* createHeader()<br>
+	* createVisualizationData()<br>
 * Updated the sequence diagram to reflect the changes to Reliability Visualization for its interaction with the following methods and objects: Avi
-* createTitle()<br>
-* displayVisualization()<br>
-* createHeader()<br>
-* Workload<br>
-* Warp<br>
-* Program<br>
-* GuiVisualization()<br>
+	* createTitle()<br>
+	* displayVisualization()<br>
+	* createHeader()<br>
+	* Workload<br>
+	* Warp<br>
+	* Program<br>
+	* GuiVisualization()<br>
 * Implement the following methods in Reliability Analysis: Patrick
-* createTitle()<br>
-* displayVisualization()<br>
-* createHeader(String)<br>
-* createVisualizationData()<br>
+	* createTitle()<br>
+	* displayVisualization()<br>
+	* createHeader(String)<br>
+	* createVisualizationData()<br>
 * Write the ReadME File: Ethan
 * Prepare for Sprint Three by doing the following: Avi
-* Conceptualized Reliability Analysis<br>
-* Begin writing unit test<br>
-* Updated future sequence diagram to represent the new process<br>
+	* Conceptualized Reliability Analysis<br>
+	* Begin writing unit test<br>
+	* Updated future sequence diagram to represent the new process<br>
 ##### Final project - Sprint 3
-We allocated work for this sprint with the following work distribution. Note, the sequence diagram has been updated to reflect our new work flow:
+We allocated work for this sprint with the following work distribution. Note, a new [sequence diagram](./Sprint 3 Sequence Diagram.png)has been made to reflect our new work flow:
 * Write three JUnits Tests for the followings methods in Reliability Analysis by testing edges cases: Ethan
 * verifyReliabilities()<br>
 * calcNextNodeReliability()<br>
 * fillInReliabilities()<br>
 * buildReliabilityTable()<br>
 * Updated the UML Diagram to reflect the changes in the following methods and classes in Reliability Analysis: Julian
-* verifyReliabilities()<br>
-* calcNextNodeReliability()<br>
-* fillInReliabilities()<br>
-* buildReliabilityTable()<br>
-* Class RealiabilityNode<br>
+	* verifyReliabilities()<br>
+	* calcNextNodeReliability()<br>
+	* fillInReliabilities()<br>
+	* buildReliabilityTable()<br>
+	* Class RealiabilityNode<br>
 * Write Java docs and create the documentation for the following methods and classes in Reliability Analysis: Patrick
-* verifyReliabilities()<br>
-* calcNextNodeReliability()<br>
-* fillInReliabilities()<br>
-* buildReliabilityTable()<br>
-* Class RealiabilityNode<br>
+	* verifyReliabilities()<br>
+	* calcNextNodeReliability()<br>
+	* fillInReliabilities()<br>
+	* buildReliabilityTable()<br>
+	* Class RealiabilityNode<br>
 * Updated the sequence diagram to reflect the changes to Reliability Analysis's newly added methods and classes: Avi
-* verifyReliabilities()<br>
-* calcNextNodeReliability()<br>
-* fillInReliabilities()<br>
-* buildReliabilityTable()<br>
-* Class RealiabilityNode<br>
+	* verifyReliabilities()<br>
+	* calcNextNodeReliability()<br>
+	* fillInReliabilities()<br>
+	* buildReliabilityTable()<br>
+	* Class RealiabilityNode<br>
 * Implement the following methods in Reliability Analysis: Avi
-* verifyReliabilities()<br>
-* buildReliabilityTable()<br>
+	* verifyReliabilities()<br>
+	* buildReliabilityTable()<br>
 * Implement the following methods and objects in Reliability Analysis: Julian
-* calcNextNodeReliability()<br>
-* fillInReliabilities()<br>
-* Class RealiabilityNode<br>
+	* calcNextNodeReliability()<br>
+	* fillInReliabilities()<br>
+	* Class RealiabilityNode<br>
 * Write the ReadME File: Patrick
 
