@@ -2,12 +2,8 @@ package edu.uiowa.cs.warp;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.BeforeAll.*;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
+
 
 public class ReliabilityVisualizationTest {
 	/**
@@ -28,14 +24,14 @@ public class ReliabilityVisualizationTest {
         ReliabilityVisualization viz = new ReliabilityVisualization(warp);
         return viz;
     }
-    /** testCreateHeader_Example tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
+    /** testCreateHeaderExample tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
      *  The test creates a new ReliabilityVisualization object by calling the createReliabilityVisualization() 
      *  method with Example.txt as the input file. It then tests the header created with createHeader() and createTitle()
      *  and compares it with the expected output.
      *  
      */
     @Test
-    void testCreateHeader_Example() {
+    void testCreateHeaderExample() {
         String filename = "example.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -50,14 +46,35 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateHeader_Example1a tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
+     * testCreateHeaderExampleDifferentVals tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
+     *  The test creates a new ReliabilityVisualization object by calling the createReliabilityVisualization() 
+     *  method with Example.txt as the input file with different values. It then tests the header created with createHeader() and createTitle()
+     *  and compares it with the expected output.
+     */
+    @Test
+    void testCreateHeaderExampleDifferentVals() {
+        String filename = "example.txt";
+        Double m = 0.8;
+        Double e2e = 0.88;
+        int numChannels = 16;
+        ReliabilityVisualization viz = createReliabilityVisualization(filename, m, e2e, numChannels);
+        String expected = "Reliability Analysis for graph Example created with the following parameters:\n" +
+                "Scheduler Name: Priority\n" +
+                "M: 0.8\n" +
+                "E2E: 0.88\n" +
+                "nChannels: 16\n";
+        String actual = viz.createHeader().toString();
+        assertEquals(expected, actual);
+    }
+    /**
+     * testCreateHeaderExample1a tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
      *  The test creates a new ReliabilityVisualization object by calling the createReliabilityVisualization() 
      *  method with Example1a.txt as the input file. It then tests the header created with createHeader() and createTitle() 
      *  and compares it with the expected output.
      *  
      */
     @Test
-    void testCreateHeader_Example1a() {
+    void testCreateHeaderExample1a() {
         String filename = "example1a.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -71,14 +88,34 @@ public class ReliabilityVisualizationTest {
         String actual = viz.createHeader().toString();
         assertEquals(expected, actual);
     }
+   /** testCreateHeaderExample1aDifferentVals tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
+    *  The test creates a new ReliabilityVisualization object by calling the createReliabilityVisualization() 
+    *  method with Example.txt as the input file with different values. It then tests the header created with createHeader() and createTitle()
+    *  and compares it with the expected output.
+    */
+    @Test
+    void testCreateHeaderExample1aDifferentVals() {
+        String filename = "example.txt";
+        Double m = 0.7;
+        Double e2e = 0.77;
+        int numChannels = 18;
+        ReliabilityVisualization viz = createReliabilityVisualization(filename, m, e2e, numChannels);
+        String expected = "Reliability Analysis for graph Example created with the following parameters:\n" +
+                "Scheduler Name: Priority\n" +
+                "M: 0.7\n" +
+                "E2E: 0.77\n" +
+                "nChannels: 18\n";
+        String actual = viz.createHeader().toString();
+        assertEquals(expected, actual);
+    }
     /**
-     *  testCreateHeader_StressTest4 tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
+     *  testCreateHeaderStressTest4 tests the createHeader() method and createTitle() of a ReliabilityVisualization object.
      *  The test creates a new ReliabilityVisualization object by calling the createReliabilityVisualization() 
      *  method with StressTest4.txt as the input file. It then tests the header created with createHeader() and createTitle() 
      *  and compares it with the expected output.
      */
     @Test
-    void testCreateHeader_StressTest4() {
+    void testCreateHeaderStressTest4() {
         String filename = "StressTest4.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -93,14 +130,14 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateVisualizationData_Example() tests the createVisualizationData() method of a ReliabilityVisualization object. 
+     * testCreateVisualizationDataExample() tests the createVisualizationData() method of a ReliabilityVisualization object. 
      * The test creates a new ReliabilityVisualization object with Example1.txt as the input file.
      * It then initializes the expected output String array expected to be a 2D array with height rows and width columns,
      * and fills it with the value "0.0".
      *  
      */
     @Test
-    void testCreateVisualizationData_Example() {
+    void testCreateVisualizationDataExample() {
         String filename = "example.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -118,13 +155,13 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateVisualizationData_Example1a() tests the createVisualizationData() method of a ReliabilityVisualization object. 
+     * testCreateVisualizationDataExample1a() tests the createVisualizationData() method of a ReliabilityVisualization object. 
      * The test creates a new ReliabilityVisualization object with Example1a.txt as the input file.
      * It then initializes the expected output String array expected to be a 2D array with height rows and width columns,
      * and fills it with the value "0.0".
      */
     @Test
-    void testCreateVisualizationData_Example1a() {
+    void testCreateVisualizationDataExample1a() {
         String filename = "example1a.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -142,13 +179,13 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateVisualizationData_StressTest4() tests the createVisualizationData() method of a ReliabilityVisualization object. 
+     * testCreateVisualizationDataStressTest4() tests the createVisualizationData() method of a ReliabilityVisualization object. 
      * The test creates a new ReliabilityVisualization object with StressTest4.txt as the input file.
      * It then initializes the expected output String array expected to be a 2D array with height rows and width columns,
      * and fills it with the value "0.0".
      */
     @Test
-    void testCreateVisualizationData_StressTest4() {
+    void testCreateVisualizationDataStressTest4() {
         String filename = "StressTest4.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -166,13 +203,13 @@ public class ReliabilityVisualizationTest {
         assertEquals(expected, actual);
     }
     /**
-     * testCreateColumnHeader_Example() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
+     * testCreateColumnHeaderExample() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
      * The test creates a new ReliabilityVisualization object with Example.txt as the input file.
      * The test creates a column header using the createColumnHeader() method then compares it to the desired output
      * which is and array of the strings "Flow:Node" for all the flows and nodes in the file.
      */
     @Test
-    void testCreateColumnHeader_Example() {
+    void testCreateColumnHeaderExample() {
         String filename = "example.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -186,13 +223,13 @@ public class ReliabilityVisualizationTest {
         assertArrayEquals(expected, columnHeader);
     }
     /**
-     * testCreateColumnHeader_Example1a() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
+     * testCreateColumnHeaderExample1a() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
      * The test creates a new ReliabilityVisualization object with Example1a.txt as the input file.
      * The test creates a column header using the createColumnHeader() method then compares it to the desired output
      * which is and array of the strings "Flow:Node" for all the flows and nodes in the file.
      */
     @Test
-    void testCreateColumnHeader_Example1a() {
+    void testCreateColumnHeaderExample1a() {
         String filename = "example1a.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -207,13 +244,13 @@ public class ReliabilityVisualizationTest {
 
     }
     /**
-     * testCreateColumnHeader_StressTest4() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
+     * testCreateColumnHeaderStressTest4() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
      * The test creates a new ReliabilityVisualization object with StressTest4.txt as the input file.
      * The test creates a column header using the createColumnHeader() method then compares it to the desired output
      * which is and array of the strings "Flow:Node" for all the flows and nodes in the file.
      */
     @Test
-    void testCreateColumnHeader_StressTest4() {
+    void testCreateColumnHeaderStressTest4() {
         String filename = "StressTest4.txt";
         Double m = 0.9;
         Double e2e = 0.99;
@@ -235,12 +272,12 @@ public class ReliabilityVisualizationTest {
         assertArrayEquals(expected, columnHeader);
     }
     /**
-     * testCreateColumnHeader_EmptyFlows() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
+     * testCreateColumnHeaderEmptyFlows() tests the createColumnHeader() method of a ReliabiltyVisualization object. 
      * The test creates a new ReliabilityVisualization object with EmptyFlows.txt as the input file. Creating a 
      * ReliabilityVisualization object with empty flows throws an error, which is checked through the test. 
      */
    @Test
-	void testCreateColumnHeader_EmptyFlows() {
+	void testCreateColumnHeaderEmptyFlows() {
 		
 		String filename = "EmptyFlows.txt";
 		Double m = 0.9;

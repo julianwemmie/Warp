@@ -334,7 +334,7 @@ public class ReliabilityAnalysis {
 	 * workload to get the flows in priority order
 	 * We also have a new class called reliability node which is a node in the
 	 * reliability table. We use this to keep track of the
-	 * source nodes as well as other usefull information.
+	 * source nodes as well as other useful information.
 	 * Then use the program to get the schedule which we can use to get the number
 	 * of columns. We get the number of columns from the flows
 	 * By looping through and adding up the total number of nodes. Then we can
