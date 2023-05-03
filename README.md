@@ -76,16 +76,16 @@ The final project is focused on creating code to analyze and visualize the relia
 
  <h3> Final project - Sprint 1 </h3>
 
-This is the first of three sprints dedicated to the final project. This sprint is largely dedicated to planing out the following to Sprints. <br><br>A detailed grasp of the task to be done can be found in [SWD Project Plan.pptx](./SWD Project Plan.pptx). The PowerPoint will be used as a method of delivery for further plan documentation. We will include the tasks that need to be completed and by whom, our methods for testing, how we will document any code written, and any other pertinent information.<br><br> An in depth look at the interactions between the objects and there methods can be found in [Sequence Diagram](./Sequence_Diagram.png). The sequence diagram details the steps and methods called in order for the ".ra" files to be processed. <br><br>
+This is the first of three sprints dedicated to the final project. This sprint is largely dedicated to planing out the following to Sprints. <br><br>A detailed grasp of the task to be done can be found in [SWD Project Plan.pptx](./SWD Project Plan.pptx). The PowerPoint will be used as a method of delivery for further plan documentation. We will include the tasks that need to be completed and by whom, our methods for testing, how we will document any code written, and any other pertinent information.<br><br> An in depth look at the interactions between the objects and there methods can be found in [Sequence Diagram](./Sprint 3 Sequence Diagram.png). The sequence diagram details the steps and methods called in order for the ".ra" files to be processed. <br><br>
 
-We allocated work for this sprint with the following work distribution:
-- Ethan: Wrote ReadME documentation and built out the powerpoint to outline the project's duties <br>
-- Julian: Searched through the codebase and given instruction to conceptualize the relationship between the two then taught his team members what he found <br>
-- Patrick: Took what he learned from Julian and Avi to build out the sequence diagrams </li>
-- Avi:Worked with Julian to understand the future changes and how they would change ReliabilityAnalysis and ReliabilityVisualization<br>
+We allocated work for this sprint with the following work distribution:<br><br>
+* Write ReadME documentation : Ethan
+* Create a PowerPoint to outline the project's duties : Patrick
+* Understand the codebase and the relationship between ReliabilityAnalysis and ReliabilityVisualization : Julian
+* Build out the sequence diagrams : Avi
+* Understand the future changes and how they would change ReliabilityAnalysis and ReliabilityVisualization : Avi
 
 <h3> Final project - Sprint 2 </h3>
-
 
 We allocated work for this sprint with the following work distribution:
 

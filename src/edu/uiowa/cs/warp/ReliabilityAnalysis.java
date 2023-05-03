@@ -493,6 +493,11 @@ public class ReliabilityAnalysis {
 		return this.reliabilityTable;
 	}
 
+	/**
+	 * Verify that the reliabilities are greater than the end-to-end reliability
+	 * 
+	 * @return
+	 */
 	public Boolean verifyReliabilities() {
 		int numRows = reliabilityTable.size();
 		ReliabilityRow lastRow = reliabilityTable.get(numRows - 1);

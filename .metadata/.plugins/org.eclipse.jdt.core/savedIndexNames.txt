@@ -1,0 +1,20 @@
+INDEX VERSION 1.131+/Users/patrickfoster/Desktop/Coding/cs2820/.metadata/.plugins/org.eclipse.jdt.core
+90896258.index
+3584714922.index
+1175223481.index
+2033833497.index
+2881763393.index
+3875665890.index
+2375775507.index
+1218518859.index
+1929266261.index
+120914360.index
+2543413358.index
+3484958076.index
+1824182146.index
+1865797976.index
+122214566.index
+2228739325.index
+2211386260.index
+3518113333.index
+2742725538.index
