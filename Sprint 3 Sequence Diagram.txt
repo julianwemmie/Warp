@@ -18,6 +18,32 @@ User ->Warp : Call Warp
 
 activate Warp
 
+note over Warp: Concrete
+
+Warp ->Warp:verifyPerformanceRequirements()
+activate Warp
+Warp ->Warp:verifyReliabilities()
+deactivate Warp
+
+activate Warp
+
+Warp ->Warp System: reliabilitiesMet()
+
+activate Warp System
+
+Warp System->Reliability Analysis: verifyReliabilities()
+
+activate Reliability Analysis
+
+Reliability Analysis -->Warp System: Reliabilities Met
+
+deactivate Reliability Analysis
+
+Warp System -->Warp:Reliabilities Met
+
+deactivate Warp System
+deactivate Warp
+
 
 ref over Warp,Visualization Factory:Call Visualization() if -ra flag is used 
 
