@@ -84,11 +84,18 @@ public class ReliabilityAnalysis {
 	 * Stores the reliability table
 	 */
 	private ReliabilityTable reliabilityTable = null;
+	
+	/**
+	 * List of reliabilityNodes in order of how they appear in the reliabilityTable.
+	 */
+	private ArrayList<ReliabilityNode> reliabilityNodes = new ArrayList<ReliabilityNode>();
 
 	/**
-	 * Stores the reliability matrix in a key value pair. The key is the flow name.
+	 * Stores reliabilityNodes in a key value pair for easy lookup. The key is the flowName:nodeName
 	 */
 	private HashMap<String, ReliabilityNode> nodeMap = new HashMap<String, ReliabilityNode>();
+	
+
 
 	/**
 	 * ReliabiltyNode is a helper class that stores the information of a node in a
@@ -97,12 +104,12 @@ public class ReliabilityAnalysis {
 	 * ReliabilityTable.
 	 */
 	class ReliabilityNode {
-		String nodeName;
-		String flowName;
-		Boolean isSourceNode;
-		Integer columnIndex;
-		Integer period;
-		Double prevR = 0.0;
+		private String nodeName;
+		private String flowName;
+		private Boolean isSourceNode;
+		private Integer columnIndex;
+		private Integer period;
+		private Double prevR = 0.0;
 
 		ReliabilityNode(String nodeName, String flowName, Boolean isSourceNode,
 				Integer columnIndex, Integer period) {
@@ -111,7 +118,62 @@ public class ReliabilityAnalysis {
 			this.isSourceNode = isSourceNode;
 			this.columnIndex = columnIndex;
 			this.period = period;
+			
+			if (isSourceNode == true) {
+				this.prevR = 1.0;
+			} else {
+				this.prevR = 0.0;
+			}
 		}
+
+		public String getNodeName() {
+			return nodeName;
+		}
+
+		public void setNodeName(String nodeName) {
+			this.nodeName = nodeName;
+		}
+
+		public String getFlowName() {
+			return flowName;
+		}
+
+		public void setFlowName(String flowName) {
+			this.flowName = flowName;
+		}
+
+		public Boolean isSourceNode() {
+			return isSourceNode;
+		}
+
+		public void setIsSourceNode(Boolean isSourceNode) {
+			this.isSourceNode = isSourceNode;
+		}
+
+		public Integer getColumnIndex() {
+			return columnIndex;
+		}
+
+		public void setColumnIndex(Integer columnIndex) {
+			this.columnIndex = columnIndex;
+		}
+
+		public Integer getPeriod() {
+			return period;
+		}
+
+		public void setPeriod(Integer period) {
+			this.period = period;
+		}
+
+		public Double getPrevR() {
+			return prevR;
+		}
+
+		public void setPrevR(Double prevR) {
+			this.prevR = prevR;
+		}
+		
 	}
 
 	/**
@@ -266,9 +328,7 @@ public class ReliabilityAnalysis {
 
 		nPushes.set(nNodesInFlow, size);
 		// specified reliability target is the number of rows in the reliabilityWindow
-		for (Object row : reliabilityWindow.toArray()) {
-			System.out.println(row);
-		}
+
 		return nPushes;
 	}
 
@@ -350,7 +410,6 @@ public class ReliabilityAnalysis {
 		WorkLoad wl = program.toWorkLoad();
 		ArrayList<String> flowNames = wl.getFlowNamesInPriorityOrder();
 		FlowMap flows = wl.getFlows();
-		ArrayList<ReliabilityNode> reliabilityNodes = new ArrayList<ReliabilityNode>();
 		int numCols = 0;
 
 		// create hashmap of reliabiltyNodes to quickly look up period, parent flow,
@@ -364,7 +423,6 @@ public class ReliabilityAnalysis {
 				ReliabilityNode reliabilityNode;
 				if (i == 0) {
 					reliabilityNode = new ReliabilityNode(nodeName, flowName, true, i, flowPeriod);
-					reliabilityNode.prevR = 1.0;
 				} else {
 					reliabilityNode = new ReliabilityNode(nodeName, flowName, false, i, flowPeriod);
 				}
@@ -382,7 +440,7 @@ public class ReliabilityAnalysis {
 		// set source nodes to 1.0
 		for (int i = 0; i < reliabilityNodes.size(); i++) {
 			ReliabilityNode rNode = reliabilityNodes.get(i);
-			if (rNode.isSourceNode == true) {
+			if (rNode.isSourceNode() == true) {
 				for (int j = 0; j < numRows; j++) {
 					reliabilityTable.get(j).set(i, 1.0);
 				}
@@ -401,7 +459,7 @@ public class ReliabilityAnalysis {
 
 				// calculate reliability for each instruction in a timeslot
 				for (InstructionParameters instructionParameter : instructionParameters) {
-					fillInReliabilities(instructionParameter, reliabilityNodes, i, numRows);
+					fillInReliabilities(instructionParameter, i, numRows);
 				}
 			}
 
@@ -410,17 +468,17 @@ public class ReliabilityAnalysis {
 			for (int n = 0; n < reliabilityNodes.size(); n++) {
 				Double r = reliabilityTable.get(i, n);
 				ReliabilityNode reliabilityNode = reliabilityNodes.get(n);
-				reliabilityNode.prevR = r;
+				reliabilityNode.setPrevR(r);
 
 				// if new period, reset prev reliability value (prevR)
-				int period = reliabilityNode.period;
+				int period = reliabilityNode.getPeriod();
 				if ((i + 1) % period == 0) {
 
 					// change prevR depending on if it's a source node
-					if (reliabilityNode.isSourceNode == true) {
-						reliabilityNode.prevR = 1.0;
+					if (reliabilityNode.isSourceNode() == true) {
+						reliabilityNode.setPrevR(1.0);
 					} else {
-						reliabilityNode.prevR = 0.0;
+						reliabilityNode.setPrevR(0.0);
 					}
 				}
 			}
@@ -438,13 +496,13 @@ public class ReliabilityAnalysis {
 	 * @param prevR2
 	 * @return void
 	 */
-	private void fillInReliabilities(InstructionParameters instructionParameter,
-			ArrayList<ReliabilityNode> reliabilityNodes, int row_index, int numRows) {
+	private void fillInReliabilities(InstructionParameters instructionParameter, int rowIndex, int numRows) {
 
 		String flowName = instructionParameter.getFlow();
 		String srcName = instructionParameter.getSrc();
 		String snkName = instructionParameter.getSnk();
 
+		// skip if instruction is wait, sleep, etc...
 		if (flowName.equals("unused")) {
 			return;
 		}
@@ -452,15 +510,15 @@ public class ReliabilityAnalysis {
 		ReliabilityNode rNodeSrc = nodeMap.get(flowName + ":" + srcName);
 		ReliabilityNode rNodeSnk = nodeMap.get(flowName + ":" + snkName);
 
-		int src_index = reliabilityNodes.indexOf(rNodeSrc);
-		int snk_index = reliabilityNodes.indexOf(rNodeSnk);
+		int srcIndex = reliabilityNodes.indexOf(rNodeSrc);
+		int snkIndex = reliabilityNodes.indexOf(rNodeSnk);
 
-		double nextR = calcNextNodeReliability(rNodeSrc.prevR, rNodeSnk.prevR);
+		double nextR = calcNextNodeReliability(rNodeSrc.getPrevR(), rNodeSnk.getPrevR());
 
 		// fill in rest of table up until new period
-		int rowsToFill = rNodeSnk.period - (row_index % rNodeSnk.period);
+		int rowsToFill = rNodeSnk.period - (rowIndex % rNodeSnk.getPeriod());
 		for (int k = 0; k < rowsToFill; k++) {
-			reliabilityTable.get(k + row_index).set(snk_index, nextR);
+			reliabilityTable.get(k + rowIndex).set(snkIndex, nextR);
 		}
 
 		return;
@@ -483,7 +541,7 @@ public class ReliabilityAnalysis {
 		double M = program.getMinPacketReceptionRate();
 		return (1 - M) * prevSnk + M * prevSrc;
 	}
-
+	
 	/**
 	 * Getter for reliability table
 	 * 
@@ -501,13 +559,13 @@ public class ReliabilityAnalysis {
 	public Boolean verifyReliabilities() {
 		int numRows = reliabilityTable.size();
 		ReliabilityRow lastRow = reliabilityTable.get(numRows - 1);
-
-		for (double reliability : lastRow) {
+		
+		for (int i = 0; i < lastRow.size(); i++) {
+			double reliability = lastRow.get(i);
 			if (reliability < e2e) {
 				return false;
 			}
 		}
 		return true;
 	}
-
 }
